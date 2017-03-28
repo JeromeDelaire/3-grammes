@@ -2,6 +2,7 @@ package com.example.jerome.a3grammes.Rules;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +16,10 @@ import com.example.jerome.a3grammes.Settings.MoreOrLessSettings;
  */
 
 public class MoreOrLessRules extends AppCompatActivity {
+    Intent intent ;
+
     public void onCreate(Bundle savedInstanceState) {
+        intent = getIntent();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_or_less_rules);
     }
@@ -36,9 +40,7 @@ public class MoreOrLessRules extends AppCompatActivity {
 
             case R.id.action_go_back:
                 // Retour en arrière
-                Intent goBack = new Intent(this, MoreOrLessSettings.class);
-                goBack.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(goBack);
+                NavUtils.navigateUpTo(this, intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);
