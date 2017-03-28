@@ -9,6 +9,7 @@
     <color name="white">#ffffff</color>
     <color name="accent">#ffffff</color>
     <color name="secondary">#55ffffff</color>
+    <color name="black">#000000</color>
 
     <!-- Picolo. -->
     <color name="primary_picolo">#781a33</color>

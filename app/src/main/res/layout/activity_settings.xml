@@ -7,52 +7,68 @@
 
         <LinearLayout
             android:orientation="vertical" android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tv_title_settings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/MainTitle"/>
+            android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/menu_to_hide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:baselineAligned="false">
+                android:orientation="vertical">
 
-                <FrameLayout
+                <TextView
+                    android:id="@+id/tv_title_settings"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5">
+                    style="@style/MainTitle"/>
 
-                    <ImageButton
-                        android:id="@+id/ib_remove_player"
-                        android:layout_width="@dimen/little_button_size"
-                        android:layout_height="@dimen/little_button_size"
-                        android:background="@drawable/ic_minus"
-                        android:layout_gravity="center_horizontal|end"
-                        android:layout_margin="@dimen/primary_margin"
-                        />
-
-                </FrameLayout>
-
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5">
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5">
+
+                        <ImageButton
+                            android:id="@+id/ib_remove_player"
+                            android:layout_width="@dimen/little_button_size"
+                            android:layout_height="@dimen/little_button_size"
+                            android:background="@drawable/ic_minus"
+                            android:layout_gravity="center_horizontal|end"
+                            android:layout_margin="@dimen/primary_margin"
+                            />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5">
 
 
-                    <ImageButton
-                        android:id="@+id/ib_add_player"
-                        android:layout_width="@dimen/little_button_size"
-                        android:layout_height="@dimen/little_button_size"
-                        android:background="@drawable/ic_plus"
-                        android:layout_gravity="center_horizontal|start"
-                        android:layout_margin="@dimen/primary_margin"
-                        />
+                        <ImageButton
+                            android:id="@+id/ib_add_player"
+                            android:layout_width="@dimen/little_button_size"
+                            android:layout_height="@dimen/little_button_size"
+                            android:background="@drawable/ic_plus"
+                            android:layout_gravity="center_horizontal|start"
+                            android:layout_margin="@dimen/primary_margin"
+                            />
 
-                </FrameLayout>
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/nb_players_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/MoreOrLessSettingsTheme"
+                    android:gravity="center"
+                    android:textSize="20sp"/>
 
             </LinearLayout>
 
@@ -65,16 +81,12 @@
             <LinearLayout
                 android:id="@+id/names_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            </LinearLayout>
-
+                android:layout_height="match_parent"
+                android:orientation="vertical"/>
 
             </ScrollView>
 
         </LinearLayout>
-
 
     <Button
         android:layout_centerHorizontal="true"

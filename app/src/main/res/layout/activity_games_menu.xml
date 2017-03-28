@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.jerome.a3grammes.GamesMenu"
-    android:background="@color/white">
+    android:background="@color/black">
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <TableRow
             android:layout_width="match_parent"
@@ -21,7 +22,8 @@
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1"
-                style="@style/PicoloTile">
+                style="@style/PicoloTile"
+                android:layout_margin="@dimen/tiles_margin">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -72,7 +74,10 @@
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1"
-                style="@style/MoreOrLessTile">
+                style="@style/MoreOrLessTile"
+                android:layout_marginTop="@dimen/tiles_margin"
+                android:layout_marginRight="@dimen/tiles_margin"
+                android:layout_marginBottom="@dimen/tiles_margin">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -96,7 +101,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <FrameLayout
@@ -129,7 +134,10 @@
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1"
-                style="@style/RedOrBlackTile">
+                style="@style/RedOrBlackTile"
+                android:layout_marginLeft="@dimen/tiles_margin"
+                android:layout_marginRight="@dimen/tiles_margin"
+                android:layout_marginBottom="@dimen/tiles_margin">
 
                 <TextView
                     android:layout_width="match_parent"

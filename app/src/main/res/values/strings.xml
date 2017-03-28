@@ -2,9 +2,9 @@
     <string name="app_name">3 grammes</string>
 
     <!-- Nom des jeux. -->
-    <string name="picolo">Picolo</string>
-    <string name="more_or_less">Plus ou Moins</string>
-    <string name="red_or_black">Rouge ou Noir</string>
+    <string name="picolo">Dans ta gueule !</string>
+    <string name="more_or_less">Le Jedi</string>
+    <string name="red_or_black">Le cardinal</string>
 
     <!-- Menu écran principal. -->
     <string name="about">A propos</string>
@@ -13,9 +13,9 @@
     <string name="rules">Règles</string>
 
     <!-- Titres écrans règles. -->
-    <string name="picolo_rules">Règles du \"Picolo\"</string>
-    <string name="more_or_less_rules">Règles du \"Plus ou Moins\"</string>
-    <string name="red_or_black_rules">Règles du \"Rouge ou Noir\"</string>
+    <string name="picolo_rules">Règles du \"Dans ta gueule !\"</string>
+    <string name="more_or_less_rules">Règles du \"Jedi\"</string>
+    <string name="red_or_black_rules">Règles du \"Cardinal\"</string>
 
     <!-- Autre menus. -->
     <string name="main_menu">Menu principal</string>
@@ -55,5 +55,6 @@
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     <string name="ok">OK</string>
+    <string name="nb_players">%1$d joueurs</string>
 
 </resources>

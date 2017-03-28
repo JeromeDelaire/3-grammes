@@ -93,6 +93,7 @@
         <item name="android:background">@color/primary_red_or_black</item>
     </style>
 
+    <!--> Titles theme. -->
      <style name="MainTitle">
          <item name="android:textSize">@dimen/title_size</item>
          <item name="android:layout_margin">@dimen/primary_margin</item>
