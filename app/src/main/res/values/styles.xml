@@ -1,0 +1,109 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Theme principale. -->
+    <style name="MainTheme" parent="Theme.AppCompat.Light.DarkActionBar" >
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:colorForeground">@color/accent</item>
+        <item name="android:textColorPrimary">@color/accent</item>
+        <item name="android:editTextColor">@color/accent</item>
+        <item name="android:textColorHint">@color/secondary</item>
+        <item name="android:textColorSecondary">@color/secondary</item>
+    </style>
+
+    <!-- Theme principale en jeu. -->
+    <style name="MainThemeGames" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:colorForeground">@color/accent</item>
+        <item name="android:textColorPrimary">@color/accent</item>
+        <item name="android:editTextColor">@color/accent</item>
+        <item name="android:textColorHint">@color/secondary</item>
+        <item name="android:textColorSecondary">@color/secondary</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
+
+    <!-- Picolo Settings theme. -->
+    <style name="PicoloSettingsTheme" parent="MainTheme">
+        <item name="colorPrimary">@color/primary_picolo</item>
+        <item name="colorPrimaryDark">@color/primary_picolo_dark</item>
+        <item name="android:colorButtonNormal">@color/primary_picolo_dark</item>
+        <item name="android:colorBackground">@color/primary_picolo</item>
+    </style>
+
+    <!-- More or less Settings theme. -->
+    <style name="MoreOrLessSettingsTheme" parent="MainTheme">
+        <item name="colorPrimary">@color/primary_more_or_less</item>
+        <item name="colorPrimaryDark">@color/primary_more_or_less_dark</item>
+        <item name="android:colorButtonNormal">@color/primary_more_or_less_dark</item>
+        <item name="android:colorBackground">@color/primary_more_or_less</item>
+    </style>
+
+    <!-- Red Or Black Settings theme. -->
+    <style name="RedOrBlackSettingsTheme" parent="MainTheme">
+        <item name="colorPrimary">@color/primary_red_or_black</item>
+        <item name="colorPrimaryDark">@color/primary_red_or_black_dark</item>
+        <item name="android:colorButtonNormal">@color/primary_red_or_black_dark</item>
+        <item name="android:colorBackground">@color/primary_red_or_black</item>
+    </style>
+
+    <!-- Red Or Black theme. -->
+    <style name="RedOrBlackTheme" parent="MainThemeGames">
+        <item name="colorPrimary">@color/primary_red_or_black</item>
+        <item name="colorPrimaryDark">@color/primary_red_or_black_dark</item>
+        <item name="android:colorButtonNormal">@color/primary_red_or_black_dark</item>
+        <item name="android:colorBackground">@color/primary_red_or_black</item>
+     </style>
+
+    <!-- Dark Alert DIalog. -->
+    <style name="MyAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/alert_dialog_background</item>
+        <item name="android:textColor">@color/alert_dialog_text</item>
+    </style>
+
+    <style name="MainButtons" parent="Base.TextAppearance.AppCompat.Button">
+        <item name="android:layout_gravity">center</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">cursive</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MainButtonPicolo" parent="MainButtons">
+        <item name="android:background">@color/primary_picolo</item>
+    </style>
+
+    <style name="MainButtonMoreOrLess" parent="MainButtons">
+        <item name="android:background">@color/primary_more_or_less</item>
+    </style>
+
+    <style name="MainButtonRedOrBlack" parent="MainButtons">
+        <item name="android:background">@color/primary_red_or_black</item>
+    </style>
+
+     <style name="MainTitle">
+         <item name="android:textSize">@dimen/title_size</item>
+         <item name="android:layout_margin">@dimen/primary_margin</item>
+         <item name="android:textStyle">bold</item>
+         <item name="android:gravity">center</item>
+         <item name="android:textColor">@color/white</item>
+         <item name="android:fontFamily">cursive</item>
+     </style>
+
+     <style name="Divider">
+         <item name="android:layout_height">1dp</item>
+         <item name="android:background">@color/blue</item>
+     </style>
+
+     <style name="EditTextName">
+         <item name="android:layout_margin">@dimen/primary_margin</item>
+     </style>
+
+ </resources>

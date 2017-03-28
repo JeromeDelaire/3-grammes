@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">3 grammes</string>
+
+    <!-- Nom des jeux. -->
+    <string name="picolo">Picolo</string>
+    <string name="more_or_less">Plus ou Moins</string>
+    <string name="red_or_black">Rouge ou Noir</string>
+
+    <!-- Menu écran principal. -->
+    <string name="about">A propos</string>
+
+    <!-- Nom des paramètres. -->
+    <string name="rules">Règles</string>
+
+    <!-- Titres écrans règles. -->
+    <string name="picolo_rules">Règles du \"Picolo\"</string>
+    <string name="more_or_less_rules">Règles du \"Plus ou Moins\"</string>
+    <string name="red_or_black_rules">Règles du \"Rouge ou Noir\"</string>
+
+    <!-- Autre menus. -->
+    <string name="main_menu">Menu principal</string>
+    <string name="go_back">Retour</string>
+
+    <!-- Questions Red or Black. -->
+    <string name="rob_question1">, rouge ou noir ?</string>
+    <string name="rob_question2">, au-dessus ou en-dessous ?</string>
+    <string name="rob_question3">, entre ou en-dehors ?</string>
+    <string name="rob_question4">, trèfle, carreau, coeur ou pique ?</string>
+    <string name="rob_question5">, paire, impaire ou tête ?</string>
+    <!-- boutons Red or Black. -->
+    <string name="rob_red">Rouge</string>
+    <string name="rob_black">Noir</string>
+    <string name="rob_upper">Au-dessus</string>
+    <string name="rob_under">En-dessous</string>
+    <string name="rob_between">Intérieur</string>
+    <string name="rob_outside">Extérieur</string>
+    <string name="rob_spades">Pique</string>
+    <string name="rob_clubs">Trèfle</string>
+    <string name="rob_hearts">Coeur</string>
+    <string name="rob_diamonds">Carreau</string>
+    <string name="rob_odd">Impaire</string>
+    <string name="rob_pair">Paire</string>
+    <string name="rob_face">Tête</string>
+    <!-- AlertDialog fin de tour. -->
+    <string name="rob_win">Gagné ! %1$s distribue %2$d gorgée(s) ! </string>
+    <string name="rob_lose">Perdu ! %1$s prend %2$d gorgée(s) ! </string>
+    
+    <!-- Messages d'erreurs ou d'alertes. -->
+    <string name="alert_exit_game">Voulez vous vraiment quitter la partie ?</string>
+    <string name="error_empty_tags">Veuillez remplir tous les champs de noms</string>
+
+    <!-- Autres. -->
+    <string name="player">Joueur</string>
+    <string name="run_game">C\'est parti !</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="ok">OK</string>
+
+</resources>

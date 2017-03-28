@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#221e1f</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#fdfcfe</color>
+
+    <!-- Globals. -->
+    <color name="blue">#00078e</color>
+    <color name="white">#ffffff</color>
+    <color name="accent">#ffffff</color>
+    <color name="secondary">#55ffffff</color>
+
+    <!-- Picolo. -->
+    <color name="primary_picolo">#781a33</color>
+    <color name="primary_picolo_dark">#601428</color>
+
+    <!-- More or Less. -->
+    <color name="primary_more_or_less">#1b586b</color>
+    <color name="primary_more_or_less_dark">#123a46</color>
+
+    <!-- Red or Black. -->
+    <color name="primary_red_or_black">#2c461e</color>
+    <color name="primary_red_or_black_dark">#223617</color>
+
+    <!-- Dark Alert Dialog. -->
+    <color name="alert_dialog_background">#1bffffff</color>
+    <color name="alert_dialog_text">#000000</color>
+
+
+
+</resources>

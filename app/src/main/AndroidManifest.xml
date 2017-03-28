@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.jerome.a3grammes">
+
+    <application
+        android:largeHeap="true"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Activité principale (choix du jeu). -->
+        <activity android:name=".GamesMenu"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Réglages More or Less. -->
+        <activity android:name=".Settings.MoreOrLessSettings"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/MoreOrLessSettingsTheme"/>
+
+        <!-- Réglages Picolo. -->
+        <activity android:name=".Settings.PicoloSettings"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/PicoloSettingsTheme"/>
+
+        <!-- Réglages Red or Black. -->
+        <activity android:name=".Settings.RedOrBlackSettings"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/RedOrBlackSettingsTheme"/>
+
+        <!-- Règles More or Less. -->
+        <activity android:name=".Rules.MoreOrLessRules"/>
+
+        <!-- Règles Picolo. -->
+        <activity android:name=".Rules.PicoloRules"/>
+
+        <!-- Règles Red or Black. -->
+        <activity android:name=".Rules.RedOrBlackRules"/>
+
+        <!-- Partie Red or Black. -->
+        <activity android:name=".Games.RedOrBlack"
+            android:theme="@style/RedOrBlackTheme"
+            android:screenOrientation="landscape"/>
+
+    </application>
+
+</manifest>
