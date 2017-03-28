@@ -1,13 +1,18 @@
 package com.example.jerome.a3grammes.Games;
 
 import android.content.DialogInterface;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Display;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,12 +27,14 @@ import java.util.ArrayList;
 
 public class RedOrBlack extends AppCompatActivity{
     ImageView card[] ;
+    FrameLayout frame[];
     TextView question ;
     ArrayList<Player> players ;
     CardSet cards ;
     int actualRound = 1 ;
     int actualPlayer = 0;
     private LinearLayout buttonLayout ;
+    int animationSpeed = 500 ;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +55,6 @@ public class RedOrBlack extends AppCompatActivity{
             actualPlayer = savedInstanceState.getInt("actualPlayer");
         }
 
-
         // Emplacements pours les 5 cartes
         card = new ImageView[5];
         card[0] = (ImageView) findViewById(R.id.rob_card1);
@@ -56,6 +62,14 @@ public class RedOrBlack extends AppCompatActivity{
         card[2] = (ImageView) findViewById(R.id.rob_card3);
         card[3] = (ImageView) findViewById(R.id.rob_card4);
         card[4] = (ImageView) findViewById(R.id.rob_card5);
+
+        // Frames contenant les cartes
+        frame = new FrameLayout[5];
+        frame[0] = (FrameLayout) findViewById(R.id.rob_frame_card1);
+        frame[1] = (FrameLayout) findViewById(R.id.rob_frame_card2);
+        frame[2] = (FrameLayout) findViewById(R.id.rob_frame_card3);
+        frame[3] = (FrameLayout) findViewById(R.id.rob_frame_card4);
+        frame[4] = (FrameLayout) findViewById(R.id.rob_frame_card5);
 
         if(players!=null)
             runRound();
@@ -368,15 +382,41 @@ public class RedOrBlack extends AppCompatActivity{
                 .show();
     }
 
+    /*
+     * Affiche les cartes du joueur passé en paramètre avec une petite animation.
+     */
     private void displayCards(Player player){
-        // Affichage des cartes du joueur
-        for (int i=0 ; i<5 ; i++){
+
+        for (int i=4 ; i>=0 ; i--){
             int drawable ;
             if(player.getCards().size()>i && (drawable=player.getCards().get(i).getDrawable())!=-1)
                 card[i].setBackgroundResource(drawable);
             else{
                 card[i].setBackgroundResource(R.color.primary_red_or_black);
             }
+            TranslateAnimation animation = new TranslateAnimation(-(frame[i].getX()+frame[i].getWidth()) , 0, 0, 0);
+            animation.setDuration(animationSpeed);
+            animation.setFillAfter(true);
+            frame[i].startAnimation(animation);
+        }
+    }
+
+    /*
+    * Retire les cartes du joueur passé en paramètre avec une petite animation.
+    */
+    private void removeCards(Player player){
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
+
+        for(int i=0 ; i<5 ; i++){
+            TranslateAnimation animation = new TranslateAnimation(0, -(frame[i].getX()+frame[i].getWidth()), 0, 0);
+            animation.setDuration(animationSpeed);
+            animation.setFillAfter(true);
+            frame[i].startAnimation(animation);
         }
     }
 
@@ -390,7 +430,7 @@ public class RedOrBlack extends AppCompatActivity{
                     .setCancelable(false)
                     .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
-
+                            removeCards(player);
                             // Si c'est le dernier joueur du round
                             if(actualPlayer==players.size()-1){
                                 actualPlayer=0;
@@ -444,6 +484,8 @@ public class RedOrBlack extends AppCompatActivity{
     }
 
     public void runRound(){
+        for(int i=0 ; i<players.size() ; i++)
+            removeCards(players.get(i));
         if(actualRound==1)round1(players.get(actualPlayer));
         else if(actualRound==2)round2(players.get(actualPlayer));
         else if(actualRound==3)round3(players.get(actualPlayer));

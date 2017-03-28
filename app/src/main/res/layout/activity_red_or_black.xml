@@ -12,6 +12,7 @@
         android:layout_weight="0.3">
         
         <FrameLayout
+            android:id="@+id/rob_frame_card1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.2">
@@ -24,6 +25,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/rob_frame_card2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.2">
@@ -37,6 +39,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/rob_frame_card3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.2">
@@ -50,6 +53,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/rob_frame_card4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.2">
@@ -63,6 +67,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/rob_frame_card5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.2">

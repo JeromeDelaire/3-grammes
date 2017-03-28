@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import com.example.jerome.a3grammes.Games.RedOrBlack;
 import com.example.jerome.a3grammes.Rules.MoreOrLessRules;
 import com.example.jerome.a3grammes.Rules.PicoloRules;
+import com.example.jerome.a3grammes.Rules.RedOrBlackRules;
 import com.example.jerome.a3grammes.Settings.MoreOrLessSettings;
 import com.example.jerome.a3grammes.Settings.PicoloSettings;
 import com.example.jerome.a3grammes.Settings.RedOrBlackSettings;
@@ -79,7 +80,7 @@ public class GamesMenu extends AppCompatActivity implements View.OnClickListener
 
         // Si on clique sur les règles du red or black
         else if(view==red_or_black_rules){
-            Intent myIntent = new Intent(this, RedOrBlack.class);
+            Intent myIntent = new Intent(this, RedOrBlackRules.class);
             startActivityForResult(myIntent, 0);
         }
     }
