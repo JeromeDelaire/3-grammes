@@ -102,8 +102,7 @@ public class RedOrBlack extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 player.addCard(cards.take());
-                displayCards(player);
-                openDialog(winRound1(player, red), player);
+                displayLastCard(winRound1(player, red), player);
             }
         });
 
@@ -114,8 +113,7 @@ public class RedOrBlack extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 player.addCard(cards.take());
-                displayCards(player);
-                openDialog(winRound1(player, black), player);
+                displayLastCard(winRound1(player, black), player);
 
             }
         });
@@ -144,8 +142,7 @@ public class RedOrBlack extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 player.addCard(cards.take());
-                displayCards(player);
-                openDialog(winRound2(player, upper), player);
+                displayLastCard(winRound2(player, upper), player);
             }
         });
 
@@ -156,8 +153,7 @@ public class RedOrBlack extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 player.addCard(cards.take());
-                displayCards(player);
-                openDialog(winRound2(player, under), player);
+                displayLastCard(winRound2(player, under), player);
             }
         });
 
@@ -186,8 +182,7 @@ public class RedOrBlack extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 player.addCard(cards.take());
-                displayCards(player);
-                openDialog(winRound3(player, between), player);
+                displayLastCard(winRound3(player, between), player);
             }
         });
 
@@ -198,8 +193,7 @@ public class RedOrBlack extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 player.addCard(cards.take());
-                displayCards(player);
-                openDialog(winRound3(player, outside), player);
+                displayLastCard(winRound3(player, outside), player);
             }
         });
 
@@ -228,8 +222,7 @@ public class RedOrBlack extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 player.addCard(cards.take());
-                displayCards(player);
-                openDialog(winRound4(player, clubs), player);
+                displayLastCard(winRound4(player, clubs), player);
             }
         });
 
@@ -240,8 +233,7 @@ public class RedOrBlack extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 player.addCard(cards.take());
-                displayCards(player);
-                openDialog(winRound4(player, diamonds), player);
+                displayLastCard(winRound4(player, diamonds),player);
             }
         });
 
@@ -252,8 +244,7 @@ public class RedOrBlack extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 player.addCard(cards.take());
-                displayCards(player);
-                openDialog(winRound4(player, hearts), player);
+                displayLastCard(winRound4(player, hearts),player);
             }
         });
 
@@ -264,8 +255,7 @@ public class RedOrBlack extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 player.addCard(cards.take());
-                displayCards(player);
-                openDialog(winRound4(player, spades), player);
+                displayLastCard(winRound4(player, spades),player);
             }
         });
 
@@ -296,8 +286,7 @@ public class RedOrBlack extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 player.addCard(cards.take());
-                displayCards(player);
-                openDialog(winRound5(player, pair), player);
+                displayLastCard(winRound5(player, pair), player);
             }
         });
 
@@ -308,8 +297,7 @@ public class RedOrBlack extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 player.addCard(cards.take());
-                displayCards(player);
-                openDialog(winRound5(player, odd), player);
+                displayLastCard(winRound5(player, odd), player);
             }
         });
 
@@ -320,8 +308,7 @@ public class RedOrBlack extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 player.addCard(cards.take());
-                displayCards(player);
-                openDialog(winRound5(player, face), player);
+                displayLastCard(winRound5(player, face),player);
             }
         });
 
@@ -384,16 +371,21 @@ public class RedOrBlack extends AppCompatActivity{
 
     /*
      * Affiche les cartes du joueur passé en paramètre avec une petite animation.
+     * Annonce le résultat à la fin de l'animation
      */
-    private void displayCards(Player player){
+    private void displayCards(final Player player){
 
         for (int i=4 ; i>=0 ; i--){
             int drawable ;
+
+            // Change les backgrnouds pas les bonnes cartes
             if(player.getCards().size()>i && (drawable=player.getCards().get(i).getDrawable())!=-1)
                 card[i].setBackgroundResource(drawable);
             else{
                 card[i].setBackgroundResource(R.color.primary_red_or_black);
             }
+
+            // Lance les animations
             TranslateAnimation animation = new TranslateAnimation(-(frame[i].getX()+frame[i].getWidth()) , 0, 0, 0);
             animation.setDuration(animationSpeed);
             animation.setFillAfter(true);
@@ -402,10 +394,50 @@ public class RedOrBlack extends AppCompatActivity{
     }
 
     /*
+     * Affiche la dernière carte tirée avec une animation
+     * Affiche le résultat d'une alerte Dialog
+     */
+    private void displayLastCard(final boolean winRound, final Player player){
+        enableButtons(false);
+
+        int nbCards = player.getCards().size()-1;
+
+        // Change le backgrnoud pas la bonne carte
+        card[nbCards].setBackgroundResource(player.getCards().get(nbCards).getDrawable());
+
+        // Lance l'animation
+        TranslateAnimation animation = new TranslateAnimation(-(frame[nbCards].getX()+frame[nbCards].getWidth()) , 0, 0, 0);
+        animation.setDuration(animationSpeed);
+        animation.setFillAfter(true);
+
+        // Listener sur l'animation
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            // Quand l'animation se termine, on affiche le résultat
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                openDialog(winRound, player);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        frame[nbCards].startAnimation(animation);
+    }
+
+    /*
     * Retire les cartes du joueur passé en paramètre avec une petite animation.
     */
     private void removeCards(Player player){
 
+        enableButtons(false);
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -416,10 +448,33 @@ public class RedOrBlack extends AppCompatActivity{
             TranslateAnimation animation = new TranslateAnimation(0, -(frame[i].getX()+frame[i].getWidth()), 0, 0);
             animation.setDuration(animationSpeed);
             animation.setFillAfter(true);
+
+            if(i==4){
+                animation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        runRound();
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+            }
+
             frame[i].startAnimation(animation);
         }
     }
 
+    /*
+     * Affiche une boîte de dialogue qui indique le nombre de gorgés à boire ou à donner
+     */
     public void openDialog(boolean win, final Player player){
 
         // Si le joueur a gagné
@@ -430,7 +485,6 @@ public class RedOrBlack extends AppCompatActivity{
                     .setCancelable(false)
                     .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
-                            removeCards(player);
                             // Si c'est le dernier joueur du round
                             if(actualPlayer==players.size()-1){
                                 actualPlayer=0;
@@ -438,14 +492,14 @@ public class RedOrBlack extends AppCompatActivity{
                                     finish();
                                 else{
                                     actualRound++ ;
-                                    runRound();
+                                    removeCards(player);
                                 }
 
                             }
                             // Sinon
                             else{
                                 actualPlayer++;
-                                runRound();
+                                removeCards(player);
                             }
 
                         }
@@ -461,21 +515,21 @@ public class RedOrBlack extends AppCompatActivity{
                     .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
 
-                            // Si c'est le dernier joueur du round
+                            // Si c'est le dernier joueur du round on lance le round suivant
                             if(actualPlayer==players.size()-1){
                                 actualPlayer=0;
                                 if(actualRound==5)
                                     finish();
                                 else{
                                     actualRound++ ;
-                                    runRound();
+                                    removeCards(player);
                                 }
 
                             }
                             // Sinon
                             else{
                                 actualPlayer++;
-                                runRound();
+                                removeCards(player);
                             }
 
                         }
@@ -483,6 +537,9 @@ public class RedOrBlack extends AppCompatActivity{
         }
     }
 
+    /*
+     * Détermine quelle round lancer
+     */
     public void runRound(){
         for(int i=0 ; i<players.size() ; i++)
             removeCards(players.get(i));
@@ -576,4 +633,12 @@ public class RedOrBlack extends AppCompatActivity{
         }
     }
 
+    /*
+     * Déactive/active les boutons de jeux
+     */
+    private void enableButtons(boolean enable){
+        for (int i=0 ; i<buttonLayout.getChildCount() ; i++){
+            buttonLayout.getChildAt(i).setEnabled(enable);
+        }
+    }
 }
