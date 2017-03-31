@@ -15,15 +15,17 @@
     <!-- Titres écrans règles. -->
     <string name="picolo_rules">Règles du \"Dans ta gueule !\"</string>
     <string name="more_or_less_rules">Règles du \"Jedi\"</string>
-    <string name="red_or_black_rules">Règles du \"Cardinal\"</string>
 
     <!-- Autre menus. -->
     <string name="main_menu">Menu principal</string>
     <string name="go_back">Retour</string>
 
+    <!--> Configuration red or black. -->
+    <string name="red_or_black_rules">Règles du \"Cardinal\"</string>
+    <string name="end_with_pyramid">Terminer par une pyramide</string>
     <!-- Questions Red or Black. -->
     <string name="rob_question1">, rouge ou noir ?</string>
-    <string name="rob_question2">, au-dessus ou en-dessous ?</string>
+    <string name="rob_question2">, intérieur ou extérieur ?</string>
     <string name="rob_question3">, entre ou en-dehors ?</string>
     <string name="rob_question4">, trèfle, carreau, coeur ou pique ?</string>
     <string name="rob_question5">, paire, impaire ou tête ?</string>
@@ -44,10 +46,15 @@
     <!-- AlertDialog fin de tour. -->
     <string name="rob_win">Gagné ! %1$s distribue %2$d gorgée(s) ! </string>
     <string name="rob_lose">Perdu ! %1$s prend %2$d gorgée(s) ! </string>
+    <!--> Pyramide. -->
+    <string name="pyramid_result">%1$s possède %2$d %3$s, il/elle %4$s %5$d gorgée(s) !</string>
+    <string name="give">distribue</string>
+    <string name="take">prend</string>
     
     <!-- Messages d'erreurs ou d'alertes. -->
     <string name="alert_exit_game">Voulez vous vraiment quitter la partie ?</string>
     <string name="error_empty_tags">Veuillez remplir tous les champs de noms</string>
+    <string name="alert_number_of_set">En raison du grand nombre de joueur, %1$d jeux de carte seront utilisés</string>
 
     <!-- Autres. -->
     <string name="player">Joueur</string>
@@ -56,5 +63,20 @@
     <string name="no">Non</string>
     <string name="ok">OK</string>
     <string name="nb_players">%1$d joueurs</string>
+
+    <!--> Nom des cartes. -->
+    <string name="as">As</string>
+    <string name="two">Deux</string>
+    <string name="three">Trois</string>
+    <string name="four">Quatre</string>
+    <string name="five">Cinq</string>
+    <string name="six">Six</string>
+    <string name="seven">Sept</string>
+    <string name="eight">Huit</string>
+    <string name="nine">Neuf</string>
+    <string name="ten">Dix</string>
+    <string name="jack">Valet(s)</string>
+    <string name="queen">Reine(s)</string>
+    <string name="king">Roi(s)</string>
 
 </resources>

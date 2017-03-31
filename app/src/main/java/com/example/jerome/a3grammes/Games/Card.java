@@ -1,13 +1,18 @@
 package com.example.jerome.a3grammes.Games;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.jerome.a3grammes.Interface.Cards;
 import com.example.jerome.a3grammes.R;
+
+import java.util.Objects;
 
 /**
  * Created by Jerome on 22/02/2017.
  */
 
-public class Card {
+public class Card implements Parcelable{
     private int valeur = -1;
     private String couleur = null;
 
@@ -24,20 +29,11 @@ public class Card {
         return couleur;
     }
 
-    public void setCouleur(String couleur) {
-        this.couleur = couleur;
-    }
-
-    public void setValeur(int valeur) {
-
-        this.valeur = valeur;
-    }
-
     public int getDrawable(){
 
         if(valeur!=-1 && couleur!=null) {
 
-            if (couleur == Cards.CLUBS) {
+            if (Objects.equals(couleur, Cards.CLUBS)) {
 
                 if (valeur == 1) return R.drawable.ace_of_clubs;
                 else if (valeur == 2) return R.drawable.two_of_clubs;
@@ -54,7 +50,7 @@ public class Card {
                 else if (valeur == 13) return R.drawable.king_of_clubs2;
                 else return -1;
 
-            } else if (couleur == Cards.SPADES) {
+            } else if (Objects.equals(couleur, Cards.SPADES)) {
 
                 if (valeur == 1) return R.drawable.ace_of_spades2;
                 else if (valeur == 2) return R.drawable.two_of_spades;
@@ -71,7 +67,7 @@ public class Card {
                 else if (valeur == 13) return R.drawable.king_of_spades2;
                 else return -1;
 
-            } else if (couleur == Cards.DIAMONDS) {
+            } else if (Objects.equals(couleur, Cards.DIAMONDS)) {
 
                 if (valeur == 1) return R.drawable.ace_of_diamonds;
                 else if (valeur == 2) return R.drawable.two_of_diamonds;
@@ -88,7 +84,7 @@ public class Card {
                 else if (valeur == 13) return R.drawable.king_of_diamonds2;
                 else return -1;
 
-            } else if (couleur == Cards.HEARTS) {
+            } else if (Objects.equals(couleur, Cards.HEARTS)) {
 
                 if (valeur == 1) return R.drawable.ace_of_hearts;
                 else if (valeur == 2) return R.drawable.two_of_hearts;
@@ -113,4 +109,52 @@ public class Card {
             return -1;
     }
 
+    /*
+     * Retourne le nom de la carte
+     */
+    public int getName(){
+
+        if(valeur==1) return R.string.as ;
+        else if(valeur==2) return R.string.two ;
+        else if(valeur==3) return R.string.three ;
+        else if(valeur==4) return R.string.four ;
+        else if(valeur==5) return R.string.five ;
+        else if(valeur==6) return R.string.six ;
+        else if(valeur==7) return R.string.seven ;
+        else if(valeur==8) return R.string.eight ;
+        else if(valeur==9) return R.string.nine ;
+        else if(valeur==10) return R.string.ten ;
+        else if(valeur==11) return R.string.jack ;
+        else if(valeur==12) return R.string.queen ;
+        else if(valeur==13) return R.string.king ;
+        else return -1;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(valeur);
+        parcel.writeString(couleur);
+    }
+
+    protected Card(Parcel in) {
+        valeur = in.readInt();
+        couleur = in.readString();
+    }
+
+    public static final Creator<Card> CREATOR = new Creator<Card>() {
+        @Override
+        public Card createFromParcel(Parcel in) {
+            return new Card(in);
+        }
+
+        @Override
+        public Card[] newArray(int size) {
+            return new Card[size];
+        }
+    };
 }

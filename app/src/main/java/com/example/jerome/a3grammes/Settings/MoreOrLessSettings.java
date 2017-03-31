@@ -3,12 +3,10 @@ package com.example.jerome.a3grammes.Settings;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -33,7 +31,7 @@ public class MoreOrLessSettings extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_red_or_black_settings);
 
         RelativeLayout rl = (RelativeLayout) findViewById(R.id.main_layout_settings);
         rl.setBackgroundResource(R.color.primary_more_or_less);
@@ -134,6 +132,7 @@ public class MoreOrLessSettings extends AppCompatActivity {
         int dim = (int) getResources().getDimension(R.dimen.edit_text_name_margin);
         lp.setMargins(dim, 0, dim, 0);
         editText.setHint(getResources().getString(R.string.player) + " " + (root.getChildCount()+1));
+        root.addView(editText, root.getChildCount(), lp);
         return editText ;
     }
 

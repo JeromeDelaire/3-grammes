@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.jerome.a3grammes">
 
+    <uses-sdk android:minSdkVersion="4"/>
+
     <application
         android:largeHeap="true"
         android:allowBackup="true"
@@ -48,6 +50,11 @@
         <activity android:name=".Games.RedOrBlack"
             android:theme="@style/RedOrBlackTheme"
             android:screenOrientation="landscape"/>
+
+        <!-- Pyramide. -->
+        <activity android:name=".Games.Pyramid"
+            android:theme="@style/RedOrBlackTheme"
+            android:screenOrientation="portrait"/>
 
     </application>
 

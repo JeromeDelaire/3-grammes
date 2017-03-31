@@ -10,6 +10,7 @@
     <color name="accent">#ffffff</color>
     <color name="secondary">#55ffffff</color>
     <color name="black">#000000</color>
+    <color name="gold">#7c631e</color>
 
     <!-- Picolo. -->
     <color name="primary_picolo">#781a33</color>

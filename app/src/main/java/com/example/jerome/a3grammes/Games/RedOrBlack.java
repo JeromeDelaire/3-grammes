@@ -1,6 +1,8 @@
 package com.example.jerome.a3grammes.Games;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -16,8 +18,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.jerome.a3grammes.Interface.Cards;
+import com.example.jerome.a3grammes.Interface.Constants;
 import com.example.jerome.a3grammes.R;
 
 import java.util.ArrayList;
@@ -26,33 +30,50 @@ import java.util.ArrayList;
  * Created by Jerome on 22/02/2017.*/
 
 public class RedOrBlack extends AppCompatActivity{
-    ImageView card[] ;
-    FrameLayout frame[];
-    TextView question ;
-    ArrayList<Player> players ;
-    CardSet cards ;
-    int actualRound = 1 ;
-    int actualPlayer = 0;
+    private ImageView card[] ;
+    private FrameLayout frame[];
+    private TextView question ;
+    private ArrayList<Player> players ;
+    private CardSet cards ;
+    private int actualRound = 1 ;
+    private int actualPlayer = 0;
     private LinearLayout buttonLayout ;
-    int animationSpeed = 500 ;
+    private int animationSpeed = 500 ;
+    private boolean pyramid ;
+
+    private Context context ;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_red_or_black);
 
+        context = this.getApplicationContext() ;
+
         question = (TextView) findViewById(R.id.question_rob);
         buttonLayout = (LinearLayout) findViewById(R.id.button_layout_rob);
 
+        // Au lacement de la partie
         if(savedInstanceState==null){
             Bundle b = getIntent().getExtras();
+            // Récupération des joueurs
             players = b.getParcelableArrayList("data");
-            cards = new CardSet();
+            // Création et mélange des cartes
+            int setNumber = 1 ;
+            while ((10 + 5*players.size())>(52*setNumber))
+                setNumber ++ ;
+            if(setNumber>1) Toast.makeText(this, String.format(getResources().getString(R.string.alert_number_of_set), setNumber), Toast.LENGTH_LONG).show();
+            cards = new CardSet(setNumber);
             cards.shuffle();
-        }else{
+            pyramid = b.getBoolean("pyramid");
+        }
+
+        // Après dévérouillage du téléphone on récupère les éléments sauvegardés
+        else{
             players = savedInstanceState.getParcelableArrayList("players");
             cards = savedInstanceState.getParcelable("card_set");
             actualRound = savedInstanceState.getInt("actualRound");
             actualPlayer = savedInstanceState.getInt("actualPlayer");
+            pyramid = savedInstanceState.getBoolean("pyramid");
         }
 
         // Emplacements pours les 5 cartes
@@ -73,14 +94,31 @@ public class RedOrBlack extends AppCompatActivity{
 
         if(players!=null)
             runRound();
+        /*Intent myIntent = new Intent(this, Pyramid.class);
+        startActivityForResult(myIntent, 0);*/
     }
 
+    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+        // on récupère le statut de retour de l'activité 2 c'est à dire l'activité numéro 1000
+        if(requestCode==Constants.PYRAMID_CODE){
+            // si le code de retour est égal à 1 on stoppe l'activité 1
+            if(resultCode==1){
+                finish();
+            }
+        }
+        super.onActivityResult (requestCode, resultCode, data);
+    }
+
+    /*
+     * Sauvegarde l'état du jeu quand on vérouille le téléphone
+     */
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putParcelableArrayList("players", players);
         savedInstanceState.putParcelable("card_set", cards);
         savedInstanceState.putInt("actualRound", actualRound);
         savedInstanceState.putInt("actualPlayer", actualPlayer);
+        savedInstanceState.putBoolean("pyramid", pyramid);
     }
 
     /*
@@ -488,8 +526,19 @@ public class RedOrBlack extends AppCompatActivity{
                             // Si c'est le dernier joueur du round
                             if(actualPlayer==players.size()-1){
                                 actualPlayer=0;
-                                if(actualRound==5)
-                                    finish();
+                                // Si c'étais le dernier round
+                                if(actualRound==5) {
+                                    // Pas de pyramide
+                                    if (!pyramid)
+                                        finish();
+                                        // On lance une pyramide
+                                    else {
+                                        Intent myIntent = new Intent(context, Pyramid.class);
+                                        myIntent.putParcelableArrayListExtra("players", players);
+                                        myIntent.putExtra("cardSet", cards);
+                                        startActivityForResult(myIntent, Constants.PYRAMID_CODE);
+                                    }
+                                }
                                 else{
                                     actualRound++ ;
                                     removeCards(player);
@@ -518,8 +567,19 @@ public class RedOrBlack extends AppCompatActivity{
                             // Si c'est le dernier joueur du round on lance le round suivant
                             if(actualPlayer==players.size()-1){
                                 actualPlayer=0;
-                                if(actualRound==5)
-                                    finish();
+                                // Si c'étais le dernier round
+                                if(actualRound==5){
+                                    // Pas de pyramide
+                                    if(!pyramid)
+                                        finish();
+                                        // On lance une pyramide
+                                    else{
+                                        Intent myIntent = new Intent(context, Pyramid.class);
+                                        myIntent.putParcelableArrayListExtra("players", players);
+                                        myIntent.putExtra("cardSet", cards);
+                                        startActivityForResult(myIntent, Constants.PYRAMID_CODE);
+                                    }
+                                }
                                 else{
                                     actualRound++ ;
                                     removeCards(player);

@@ -1,7 +1,6 @@
 package com.example.jerome.a3grammes.Settings;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -9,10 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -28,7 +27,6 @@ import com.example.jerome.a3grammes.R;
 import com.example.jerome.a3grammes.Rules.RedOrBlackRules;
 
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 /**
  * Created by Jerome on 22/02/2017. */
@@ -38,10 +36,11 @@ public class RedOrBlackSettings extends AppCompatActivity {
     RelativeLayout mainLayout ;
     TextView nb_players;
     int animationSpeed = 100;
+    CheckBox pyramid ;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_red_or_black_settings);
 
         TextView title = (TextView) findViewById(R.id.tv_title_settings);
         title.setText(R.string.red_or_black);
@@ -50,6 +49,7 @@ public class RedOrBlackSettings extends AppCompatActivity {
         mainLayout = (RelativeLayout) findViewById(R.id.main_layout_settings);
         nb_players = (TextView) findViewById(R.id.nb_players_text_view);
         toHide = (LinearLayout) findViewById(R.id.menu_to_hide);
+        pyramid = (CheckBox) findViewById(R.id.enable_pyramid_check_box);
 
         // Ajout de deux joueurs de départ
         myEditText();
@@ -143,6 +143,7 @@ public class RedOrBlackSettings extends AppCompatActivity {
         // Lancement de l'activité
         Intent myIntent = new Intent(view.getContext(), RedOrBlack.class);
         myIntent.putParcelableArrayListExtra("data", players);
+        myIntent.putExtra("pyramid", pyramid.isChecked());
         startActivityForResult(myIntent, 0);
     }
 

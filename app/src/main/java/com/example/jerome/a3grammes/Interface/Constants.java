@@ -5,6 +5,5 @@ package com.example.jerome.a3grammes.Interface;
  */
 
 public interface Constants {
-    public static final String KEY_LIST_PLAYER = "KEY_LIST_PLAYER" ;
-    public static final String KEY_BUNDLE_PLAYER = "KEY_BUNDLE_PLAYER" ;
+    int PYRAMID_CODE = 100 ;
 }

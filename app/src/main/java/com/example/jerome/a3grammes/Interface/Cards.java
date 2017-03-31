@@ -8,6 +8,4 @@ public interface Cards {
     String HEARTS = "HEARTS" ;
     String DIAMONDS = "DIAMONDS" ;
     String CLUBS = "CLUBS" ;
-    int CARDS_HEIGHT = 100 ;
-    int CARDS_WIDTH = 152 ;
 }

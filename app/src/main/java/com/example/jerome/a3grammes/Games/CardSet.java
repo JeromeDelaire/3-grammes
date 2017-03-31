@@ -1,5 +1,6 @@
 package com.example.jerome.a3grammes.Games;
 
+import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -15,17 +16,33 @@ import java.util.Collections;
 public class CardSet implements Parcelable{
     private ArrayList<Card> cards ;
 
-    public CardSet(){
+    public CardSet(int setNumber){
         cards = new ArrayList<>() ;
-        for (int i=0 ; i<52 ; i+=4){
-            cards.add(new Card((i/4)+1, Cards.CLUBS));
-            cards.add(new Card((i/4)+1, Cards.SPADES));
-            cards.add(new Card((i/4)+1, Cards.HEARTS));
-            cards.add(new Card((i/4)+1, Cards.DIAMONDS));
+        for(int j=0 ; j<setNumber ; j++) {
+            for (int i = 0; i < 52; i += 4) {
+                cards.add(new Card((i / 4) + 1, Cards.CLUBS));
+                cards.add(new Card((i / 4) + 1, Cards.SPADES));
+                cards.add(new Card((i / 4) + 1, Cards.HEARTS));
+                cards.add(new Card((i / 4) + 1, Cards.DIAMONDS));
+            }
         }
     }
 
-    protected CardSet(Parcel in) {
+    public void shuffle(){
+        ArrayList<Card> shuffle = new ArrayList<>(cards);
+        Collections.shuffle(shuffle);
+        cards = shuffle ;
+    }
+
+    public Card take(){
+        Card temp = cards.get(cards.size()-1);
+        cards.remove(cards.size()-1);
+        return temp ;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<CardSet> CREATOR = new Creator<CardSet>() {
@@ -40,29 +57,16 @@ public class CardSet implements Parcelable{
         }
     };
 
-    public ArrayList<Card> getCards() {
-        return cards;
-    }
-
-    public void shuffle(){
-        ArrayList<Card> shuffle = new ArrayList<>(cards);
-        Collections.shuffle(shuffle);
-        cards = shuffle ;
-    }
-
-    public Card take(){
-        Card temp = cards.get(cards.size()-1);
-        cards.remove(cards.size()-1);
-        return temp ;
-
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("cards", cards);
+        parcel.writeBundle(bundle);
     }
+
+    protected CardSet(Parcel in) {
+        Bundle bundle = in.readBundle(getClass().getClassLoader());
+        cards = bundle.getParcelableArrayList("cards");
+    }
+
 }

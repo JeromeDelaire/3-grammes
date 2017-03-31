@@ -26,7 +26,7 @@ public class PicoloSettings extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_red_or_black_settings);
 
         RelativeLayout rl = (RelativeLayout) findViewById(R.id.main_layout_settings);
         rl.setBackgroundResource(R.color.primary_picolo);

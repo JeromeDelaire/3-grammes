@@ -1,5 +1,6 @@
 package com.example.jerome.a3grammes.Games;
 
+import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -10,13 +11,54 @@ import java.util.ArrayList;
 
 public class Player implements Parcelable {
     private String name ;
-    private int nbMoves = 0;
     private ArrayList<Card> cards ;
 
-    private Player(Parcel in) {
-        name = in.readString();
+    public Player(String name){
+        this.name = name ;
         cards = new ArrayList<>();
     }
+
+    /*
+     * Retourne la liste des cartes du joueur
+     */
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    /*
+     * Ajoute une carte dans le jeu du joueur
+     */
+    public void addCard(Card card){
+        cards.add(card);
+    }
+
+    /*
+     * Retourne la valeur de la carte la plus haute
+     */
+    public int getMax(){
+        int max = -1 ;
+        for(int i=0 ; i<cards.size()-1; i++){
+            if(cards.get(i).getValeur()>max)
+                max = cards.get(i).getValeur() ;
+        }
+        return max ;
+    }
+
+    /*
+     * Retourne la valeur de la carte la plus basse
+     */
+    public int getMin(){
+        int min = 14 ;
+        for(int i=0 ; i<cards.size()-1; i++){
+            if(cards.get(i).getValeur()<min)
+                min = cards.get(i).getValeur() ;
+        }
+        return min ;
+    }
+
+    /*
+     * Parcelable implements methods
+     */
 
     public static final Creator<Player> CREATOR = new Creator<Player>() {
         @Override
@@ -38,11 +80,6 @@ public class Player implements Parcelable {
         this.name = name;
     }
 
-    public Player(String name){
-        this.name = name ;
-
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -51,45 +88,14 @@ public class Player implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("cards", cards);
+        parcel.writeBundle(bundle);
     }
 
-    public int getNbMoves() {
-        return nbMoves;
-    }
-
-    public void incrementMoves(){
-        nbMoves++;
-    }
-
-    public ArrayList<Card> getCards() {
-        return cards;
-    }
-
-    public void setCards(ArrayList<Card> cards) {
-        this.cards = cards;
-    }
-
-    public void addCard(Card card){
-        cards.add(card);
-    }
-
-    // Retourne la valeur de la carte la plus haute
-    public int getMax(){
-        int max = -1 ;
-        for(int i=0 ; i<cards.size()-1; i++){
-            if(cards.get(i).getValeur()>max)
-                max = cards.get(i).getValeur() ;
-        }
-        return max ;
-    }
-
-    // Retourne la valeur de la carte la plus basse
-    public int getMin(){
-        int min = 14 ;
-        for(int i=0 ; i<cards.size()-1; i++){
-            if(cards.get(i).getValeur()<min)
-                min = cards.get(i).getValeur() ;
-        }
-        return min ;
+    protected Player(Parcel in) {
+        name = in.readString();
+        Bundle bundle = in.readBundle(getClass().getClassLoader());
+        cards = bundle.getParcelableArrayList("cards");
     }
 }
