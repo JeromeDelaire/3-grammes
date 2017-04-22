@@ -13,8 +13,12 @@
     <color name="gold">#7c631e</color>
 
     <!-- Picolo. -->
-    <color name="primary_picolo">#781a33</color>
-    <color name="primary_picolo_dark">#601428</color>
+    <color name="primary_picolo">#997120</color>
+    <color name="primary_picolo_dark">#7b5b1a</color>
+    <color name="picolo_normal">#7b5b1a</color>
+    <color name="picolo_sexy">#992052</color>
+    <color name="picolo_dumb">#209979</color>
+    <color name="picolo_hard">#212121</color>
 
     <!-- More or Less. -->
     <color name="primary_more_or_less">#1b586b</color>

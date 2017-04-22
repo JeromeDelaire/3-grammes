@@ -16,7 +16,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.jerome.a3grammes.GamesMenu;
-import com.example.jerome.a3grammes.Games.Player;
+import com.example.jerome.a3grammes.Games.Global.Player;
 import com.example.jerome.a3grammes.R;
 import com.example.jerome.a3grammes.Rules.MoreOrLessRules;
 
@@ -37,7 +37,7 @@ public class MoreOrLessSettings extends AppCompatActivity {
         rl.setBackgroundResource(R.color.primary_more_or_less);
 
         TextView title = (TextView) findViewById(R.id.tv_title_settings);
-        title.setText(R.string.more_or_less);
+        title.setText(R.string.more_or_less_title);
 
         root = (LinearLayout) findViewById(R.id.names_layout);
 

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout_settings"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/menu_to_hide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title_settings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/MainTitle"
+                android:text="@string/picolo_title"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
+
+                <CheckBox
+                    android:id="@+id/dumb_cat"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dumb_cat"
+                    style="@style/NormalWhiteText"
+                    android:layout_margin="@dimen/primary_margin"/>
+
+                <CheckBox
+                    android:id="@+id/sexy_cat"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sexy_cat"
+                    style="@style/NormalWhiteText"
+                    android:layout_margin="@dimen/primary_margin"/>
+
+                <CheckBox
+                    android:id="@+id/hard_cat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hard_cat"
+                    style="@style/NormalWhiteText"
+                    android:layout_margin="@dimen/primary_margin"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:baselineAligned="false">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <ImageButton
+                        android:id="@+id/ib_remove_player"
+                        android:layout_width="@dimen/little_button_size"
+                        android:layout_height="@dimen/little_button_size"
+                        android:background="@drawable/ic_minus"
+                        android:layout_gravity="center_horizontal|end"
+                        android:layout_margin="@dimen/primary_margin"
+                        />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+
+                    <ImageButton
+                        android:id="@+id/ib_add_player"
+                        android:layout_width="@dimen/little_button_size"
+                        android:layout_height="@dimen/little_button_size"
+                        android:background="@drawable/ic_plus"
+                        android:layout_gravity="center_horizontal|start"
+                        android:layout_margin="@dimen/primary_margin"
+                        />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/nb_players_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/MoreOrLessSettingsTheme"
+                android:gravity="center"
+                android:textSize="@dimen/normal_text_size"/>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/sv_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="60dp">
+
+            <LinearLayout
+                android:id="@+id/names_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"/>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_centerHorizontal="true"
+        android:id="@+id/but_run_game"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/button_size"
+        android:text="@string/run_game"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/primary_margin"/>
+
+</RelativeLayout>

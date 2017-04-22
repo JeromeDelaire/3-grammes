@@ -19,7 +19,8 @@
                     android:id="@+id/tv_title_settings"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/MainTitle"/>
+                    style="@style/MainTitle"
+                    android:text="@string/red_or_black_title"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -107,6 +108,3 @@
         android:layout_margin="@dimen/primary_margin"/>
 
 </RelativeLayout>
-
-
-

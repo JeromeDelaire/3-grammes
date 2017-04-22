@@ -20,8 +20,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.jerome.a3grammes.Games.Player;
-import com.example.jerome.a3grammes.Games.RedOrBlack;
+import com.example.jerome.a3grammes.Games.Global.Player;
+import com.example.jerome.a3grammes.Games.RedOrBlack.RedOrBlack;
 import com.example.jerome.a3grammes.GamesMenu;
 import com.example.jerome.a3grammes.R;
 import com.example.jerome.a3grammes.Rules.RedOrBlackRules;
@@ -42,9 +42,6 @@ public class RedOrBlackSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_red_or_black_settings);
 
-        TextView title = (TextView) findViewById(R.id.tv_title_settings);
-        title.setText(R.string.red_or_black);
-
         root = (LinearLayout) findViewById(R.id.names_layout);
         mainLayout = (RelativeLayout) findViewById(R.id.main_layout_settings);
         nb_players = (TextView) findViewById(R.id.nb_players_text_view);
@@ -55,6 +52,7 @@ public class RedOrBlackSettings extends AppCompatActivity {
         myEditText();
         myEditText();
 
+        // Indique le nombre de joueurs
         nb_players.setText(String.format(getResources().getString(R.string.nb_players), root.getChildCount()));
 
         // Bouton pour ajouter des joueurs

@@ -2,9 +2,9 @@
     <string name="app_name">3 grammes</string>
 
     <!-- Nom des jeux. -->
-    <string name="picolo">Dans ta gueule !</string>
-    <string name="more_or_less">Le Jedi</string>
-    <string name="red_or_black">Le cardinal</string>
+    <string name="picolo_title">Dans ta gueule !</string>
+    <string name="more_or_less_title">Le Jedi</string>
+    <string name="red_or_black_title">Le cardinal</string>
 
     <!-- Menu écran principal. -->
     <string name="about">A propos</string>
@@ -50,8 +50,8 @@
     <string name="pyramid_result">%1$s possède %2$d %3$s, il/elle %4$s %5$d gorgée(s) !</string>
     <string name="give">distribue</string>
     <string name="take">prend</string>
-    
-    <!-- Messages d'erreurs ou d'alertes. -->
+
+    <!-- Messages d\'erreurs ou d\'alertes. -->
     <string name="alert_exit_game">Voulez vous vraiment quitter la partie ?</string>
     <string name="error_empty_tags">Veuillez remplir tous les champs de noms</string>
     <string name="alert_number_of_set">En raison du grand nombre de joueur, %1$d jeux de carte seront utilisés</string>
@@ -78,5 +78,185 @@
     <string name="jack">Valet(s)</string>
     <string name="queen">Reine(s)</string>
     <string name="king">Roi(s)</string>
+
+
+    <!--> Content lists for Picolo. -->
+    <!--> Normal categorie. -->
+    <!--> Normal list. -->
+    <string-array name="picolo_normals">
+        <item>[Name1] pose une question indiscrète à [Name2]. [Name2] doit répondre ou prendre 6 gorgées</item>
+        <item>Tout le monde prend autant de gorgées qu’il a d’animaux</item>
+        <item>[Name1] choisit la prochaine musique</item>
+        <item>[Name1] racontes ta meilleure blague, tous ceux qui sont surpris à sourire prennent 2 gorgées</item>
+        <item>Les tatoués boivent 3 gorgés</item>
+        <item>Ceux qui font du sport doivent boires 4 gorgés</item>
+        <item>Les célibataires boivent 3 gorgés</item>
+        <item>[Name1] raconte une blague et prend 3 gorgées si personne ne rigole</item>
+        <item>La personne qui le plus grand nez prend 2 gorgées</item>
+        <item>Les imberbes boivent 3 gorgées</item>
+        <item>Les barbus boivent 3 gorgées</item>
+        <item>Attention au géant ! La personne la plus grande prend 2 gorgées</item>
+        <item>Tous les pauvres étudiants qui n’ont pas de salaire peuvent distribuer 3 gorgées</item>
+        <item>Tournée du patron ! Tout le monde boit un coup</item>
+        <item>Les filles boivent autant de fois qu’il y’a de garçon dans la salle</item>
+        <item>Les garçons boivent autant de fois qu’il y a de fille dans la salle</item>
+        <item>Tous les bigleux qui portent des lunettes prennent 3 gorgées</item>
+        <item>[Name1] distribue un certain nombre de gorgées à la personne de son choix, mais en boit autant</item>
+        <item>Toutes les femmes prennent 3 gorgées</item>
+    </string-array>
+
+    <!--> Games. -->
+    <string-array name="picolo_games">
+        <item>Les films de Nicolas Cage, celui qui n’a plus d’idées ou qui répète prend 3 gorgées</item>
+        <item>Bras de fer entre [Name1] et [Name2], 4 gorgées en jeu</item>
+        <item>Pierre-feuille-ciseaux entre [Name1] et [Name2] en 3 manches gagnantes. Le perdant prend 4 gorgées</item>
+        <item>Les prénoms qui commencent par la lettre que [Name1] choisit, celui qui répète ou n’a plus d’idées prend 2 gorgées</item>
+        <item>Les personnages de Marvel celui qui répète ou qui n’a plus d’idées boit 2 gorgées [Name1] commence </item>
+        <item>Tout le monde désigne le plus gros buveur de la salle selon lui. Tout le monde vote en même temps, la personne désignée boit 3 gorgées</item>
+        <item>Suite de mots : [Name1] Dit un mot, la personne à sa droite dit un mot en rapport avec ce dernier et ainsi de suite. Le premier qui se trompe ou qui répète un mot déjà dit prend 4 gorgées</item>
+        <item>Les synonymes de “pénis”, le premier qui n’a plus d’idées ou qui répète prend 2 gorgées. [Name1] commence</item>
+        <item>[Name1] pense à un objet qui se trouve dans la pièce, le premier qui devine ses pensées distribue 3 gorgées</item>
+        <item>Téléphone arabe : Tout le monde ajoute un mot au bout de la phrase en répétant l’intégralité de la phrase. Le premier qui se trompe prend 3 gorgées. [Name1] commence</item>
+        <item>Ne pas lire à voix haute ! La personne qui lit lève la main et regarde les autres. Si personne ne fait pareil au bout de 10 secondes, tout le monde prend 2 gorgées, sinon, la dernière personne à lever la main prend 5 gorgées</item>
+        <item>Vous devez désignez la personne la plus bourré d’entre vous. Tout le monde vote en même temps, la personne désignée prend 3 gorgées</item>
+        <item>Les pokémons : Celui qui n’a plus d’idées où qui répète boit 3 gorgées</item>
+    </string-array>
+
+    <!--> You prefer. -->
+    <string-array name="picolo_prefers">
+        <item>Chocolatine ou pain au chocolat ? Tout le monde vote en même temps les minoritaires boivent 3 gorgées</item>
+        <item>Kebab ou pizza ? Tout le monde vote en même temps les minoritaires boivent 3 gorgées</item>
+        <item>Electro ou rap ? Tout le monde vote en meme temps Les minoritaires boivent 3 gorgées</item>
+        <item>Kronenbourg ou Heineken ? Tout le monde vote en même temps les minoritaires prennent 3 gorgées</item>
+        <item>KFC ou McDonalds ? Tout le monde vote en même temps, les minoritaires prennent 2 gorgées</item>
+        <item>Ne pas aller aux toilettes pendant une semaine ou assister à un concert de Justin Bieber ? Tout le monde vote en même temps, les minoritaires prennent 2 gorgées</item>
+        <item>Vivre sans bras ou sans jambes ? Tout le monde vote en même temps, les minoritaires prennent 2 gorgées</item>
+    </string-array>
+
+    <!--> Maledictions. -->
+    <string-array name="picolo_maledictions">
+        <item>Tout le monde échange son verre avec son voisin de droite</item>
+        <item>[Name1] n’as plus le droit de parler à [Name2] sous peine de prendre 4 gorgées</item>
+        <item>Plus personne ne touche la table, si quelqu\'un la touche il boit 4 gorgées</item>
+        <item>[Name1] doit vouvoyer [Name2], 2 gorgées à chaque oubli</item>
+        <item>[Name1] est un alcoolique et boit double jusqu’à nouvel ordre !</item>
+        <item>[Name1] doit boire de sa mauvaise main sous peine de prendre 2 gorgées. Si quelqu’un l’accuse à tort, il prend 5 gorgées</item>
+        <item>Tout le monde échange son prénom avec la personne située à sa gauche, si quelqu’un se trompe de prénom il boit 2 gorgées</item>
+        <item>[Name1] devient le larbin de [Name2]. [Name2] peut alors léguer toutes ses gorgées à [Name1]</item>
+        <item>Nouvelle règle ! [Name1] doit parler avec l’accent belge et boit 2 gorgées à chaque oubli</item>
+    </string-array>
+
+    <!--> End Maledictions. -->
+    <string-array name="picolo_end_maledictions">
+        <item>Tout le monde peut reprendre son verre</item>
+        <item>[Name1] peut de nouveau parler à [Name2]</item>
+        <item>Vous pouvez toucher la table</item>
+        <item>[Name1] peut de nouveau tutoyer [Name2]</item>
+        <item>[Name1] risque de vomir partout, ses gorgées ne sont plus doublées</item>
+        <item>[Name1] n\'est plus obligé de boire de sa mauvaise main</item>
+        <item>Tout le monde récupère son prénom</item>
+        <item>[Name1] n\'est plus le larbin de [Name2]</item>
+        <item>[Name1] peut reparler normalement</item>
+    </string-array>
+
+    <!--> Dumb catégorie. -->
+    <!--> Normal type -->
+    <string-array name="picolo_normals_dumb">
+        <item>Celui qui a le plus gros cul bois 3 gorgées</item>
+        <item>Les roux et les chauves boivent 3 gorgées</item>
+        <item>Les dalleux qui ont déjà pécho un thon en boîte prennent 5 gorgées</item>
+    </string-array>
+
+    <!--> Game type -->
+    <string-array name="picolo_games_dumb">
+        <item>Le premier qui pète distribue 3 gorgées, le deuxième distribue 2 gorgées, et le troisième 1 gorgée</item>
+        <item>Concours de rots, le gagnant distribue 3 gorgées</item>
+    </string-array>
+
+    <!--> You prefer type -->
+    <string-array name="picolo_prefers_dumb">
+        <item>Boire un verre de sperme ou un verre d’urine tout le monde vote en même temps les minoritaires prennent 2 gorgées</item>
+    </string-array>
+
+    <!--> maledictions type -->
+    <string-array name="picolo_maledictions_dumb">
+        <item>Tous les binoclards prêtent leurs lunettes à quelqu’un qui n’a pas de lunettes</item>
+        <item>Tous le prend le prénom de sa mère, si quelqu’un oublie ou se trompe de prénom il prend 3 gorgées</item>
+    </string-array>
+
+    <!--> End malediction type -->
+    <string-array name="picolo_end_maledictions_dumb">
+        <item>Les binoclards peuvent reprendre leurs lunettes</item>
+        <item>Vos mères peuvent reprendre leur prénom</item>
+    </string-array>
+
+    <!--> Sexy catégorie. -->
+    <!--> Normal type -->
+    <string-array name="picolo_normals_sexy">
+        <item>Ceux/celles qui portent un string boivent 2 gorgées</item>
+        <item>Bois 3 gorgés si tu as déjà mesuré la taille de ton sexe ou celui de ton partenaire</item>
+        <item>Prends une gorgé si tu ferais l\'amour à quelqu\'un dans cette pièce</item>
+    </string-array>
+
+    <!--> Game type -->
+    <string-array name="picolo_games_sexy">
+        <item>Les synonymes de “pénis”, le premier qui n’a plus d’idées ou qui répète prend 2 gorgées. [Name1] commence</item>
+    </string-array>
+
+    <!--> You prefer type -->
+    <string-array name="picolo_prefers_sexy">
+
+    </string-array>
+
+    <!--> maledictions type -->
+    <string-array name="picolo_maledictions_sexy">
+        <item>Tous le monde caresse la cuisse de son voisin de droite, sous peine de cul sec</item>
+    </string-array>
+
+    <!--> End malediction type -->
+    <string-array name="picolo_end_maledictions_sexy">
+        <item>Vous pouvez arrêtez de vous caresser la cuisse</item>
+    </string-array>
+
+    <!--> Hard catégorie. -->
+    <!--> Normal type -->
+    <string-array name="picolo_normals_hard">
+        <item>Gorgées x5 sur le prochain tour !</item>
+        <item>Ceux qui sont en couple finissent leur verres cul-sec pour soutenir les célibataires</item>
+        <item>Les fumeurs prennent autant de gorgées, que ce qu\'il fument comme cigarettes par jour</item>
+    </string-array>
+
+    <!--> Game type -->
+    <string-array name="picolo_games_hard">
+
+    </string-array>
+
+    <!--> You prefer type -->
+    <string-array name="picolo_prefers_hard">
+
+    </string-array>
+
+    <!--> maledictions type -->
+    <string-array name="picolo_maledictions_hard">
+        <item>Posez un verre au milieu de la table. A chaque tour, vous remplirez ce verre par les gorgées que vous devez boire. Quelqu\'un devra boire ce cimetière, son nom sera annoncé dans quelques tours</item>
+    </string-array>
+
+    <!--> End malediction type -->
+    <string-array name="picolo_end_maledictions_hard">
+        <item>[Name1] est l\'heureux gagnant ! Il doit boire le cimetière cul-sec</item>
+    </string-array>
+
+    <!-->Type of contents. -->
+    <string name="malediction">Malédiction</string>
+    <string name="game">Jeu</string>
+    <string name="normal">Normal</string>
+    <string name="you_prefer">Tu préfères</string>
+    <string name="challenge">Défi</string>
+
+    <!-->Catégories of contents. -->
+    <string name="normal_cat">Normal</string>
+    <string name="sexy_cat">Sexy</string>
+    <string name="hard_cat">Hard</string>
+    <string name="dumb_cat">Débiles</string>
 
 </resources>

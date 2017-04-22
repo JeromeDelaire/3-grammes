@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.example.jerome.a3grammes.Games.RedOrBlack;
 import com.example.jerome.a3grammes.Rules.MoreOrLessRules;
 import com.example.jerome.a3grammes.Rules.PicoloRules;
 import com.example.jerome.a3grammes.Rules.RedOrBlackRules;

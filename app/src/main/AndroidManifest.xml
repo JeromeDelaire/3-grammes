@@ -27,7 +27,7 @@
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/MoreOrLessSettingsTheme"/>
 
-        <!-- Réglages Picolo. -->
+        <!-- Réglages picolo. -->
         <activity android:name=".Settings.PicoloSettings"
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/PicoloSettingsTheme"/>
@@ -47,14 +47,19 @@
         <activity android:name=".Rules.RedOrBlackRules"/>
 
         <!-- Partie Red or Black. -->
-        <activity android:name=".Games.RedOrBlack"
+        <activity android:name=".Games.RedOrBlack.RedOrBlack"
             android:theme="@style/RedOrBlackTheme"
             android:screenOrientation="landscape"/>
 
         <!-- Pyramide. -->
-        <activity android:name=".Games.Pyramid"
+        <activity android:name=".Games.RedOrBlack.Pyramid"
             android:theme="@style/RedOrBlackTheme"
             android:screenOrientation="portrait"/>
+
+        <!-- Partie Red or Black. -->
+        <activity android:name=".Games.Picolo.Picolo"
+            android:theme="@style/PicoloTheme"
+            android:screenOrientation="landscape"/>
 
     </application>
 

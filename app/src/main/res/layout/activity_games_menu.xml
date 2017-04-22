@@ -28,7 +28,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/picolo"
+                    android:text="@string/picolo_title"
                     style="@style/TilesTextTheme"
                     android:layout_marginTop="@dimen/primary_margin"/>
 
@@ -82,7 +82,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/more_or_less"
+                    android:text="@string/more_or_less_title"
                     style="@style/TilesTextTheme"
                     android:layout_marginTop="@dimen/primary_margin"/>
 
@@ -142,7 +142,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/red_or_black"
+                    android:text="@string/red_or_black_title"
                     style="@style/TilesTextTheme"/>
 
                 <FrameLayout

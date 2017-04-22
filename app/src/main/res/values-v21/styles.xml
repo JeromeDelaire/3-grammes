@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="PicoloTheme" parent="MainThemeGames">
+        <item name="colorPrimary">@color/primary_picolo</item>
+        <item name="colorPrimaryDark">@color/primary_picolo_dark</item>
+        <item name="android:colorButtonNormal">@color/primary_picolo_dark</item>
+        <item name="android:colorBackground">@color/primary_picolo</item>
+    </style>
+</resources>
