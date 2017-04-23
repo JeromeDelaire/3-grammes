@@ -135,7 +135,7 @@ public class Pyramid extends AppCompatActivity {
                 if(j!=0)
                     params.addRule(RelativeLayout.RIGHT_OF, cards[i][j-1].getId());
 
-                int margin = (Screen.getScreenHeigt(this) - ((int) ((max_size/size_cards_factor)*1.52)*row.length))/(2*2*row.length) ;
+                int margin = (Screen.getScreenHeight(this) - ((int) ((max_size/size_cards_factor)*1.52)*row.length))/(2*2*row.length) ;
                 int sideMargin = (Screen.getScreenWidth(this) - ((max_size/size_cards_factor)*cards[cards.length-1].length))/(2*cards[cards.length-1].length);
                 params.setMargins(sideMargin, margin, sideMargin, margin);
                 cards[i][j].setLayoutParams(params);

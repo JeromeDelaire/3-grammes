@@ -21,7 +21,7 @@ public class Screen {
         return width ;
     }
 
-    public static int getScreenHeigt(Context context)
+    public static int getScreenHeight(Context context)
     {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();

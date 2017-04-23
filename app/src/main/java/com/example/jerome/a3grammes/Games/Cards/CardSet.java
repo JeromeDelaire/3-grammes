@@ -40,6 +40,10 @@ public class CardSet implements Parcelable{
         return temp ;
     }
 
+    public int getSize(){
+        return cards.size();
+    }
+
     @Override
     public int describeContents() {
         return 0;

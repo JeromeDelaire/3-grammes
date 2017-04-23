@@ -56,9 +56,14 @@
             android:theme="@style/RedOrBlackTheme"
             android:screenOrientation="portrait"/>
 
-        <!-- Partie Red or Black. -->
+        <!-- Partie Picolo. -->
         <activity android:name=".Games.Picolo.Picolo"
             android:theme="@style/PicoloTheme"
+            android:screenOrientation="landscape"/>
+
+        <!-- Partie More or Less. -->
+        <activity android:name=".Games.MoreOrLess.MoreOrLess"
+            android:theme="@style/MoreOrLessTheme"
             android:screenOrientation="landscape"/>
 
     </application>

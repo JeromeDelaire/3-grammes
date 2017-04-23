@@ -180,11 +180,12 @@ public class Picolo extends AppCompatActivity {
         if(savedInstanceState==null)
             selectRandomContent();
 
+        // Si on clique sur l'écran
         root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(database.getAvailableContents()==0 && database.getNbComplementReady()==0)
-                    exitByBackKey();
+                    finish();
                 else
                     selectRandomContent();
             }

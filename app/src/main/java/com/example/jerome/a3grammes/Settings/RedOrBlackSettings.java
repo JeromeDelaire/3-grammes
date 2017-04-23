@@ -32,11 +32,11 @@ import java.util.ArrayList;
  * Created by Jerome on 22/02/2017. */
 
 public class RedOrBlackSettings extends AppCompatActivity {
-    LinearLayout root, toHide ;
-    RelativeLayout mainLayout ;
-    TextView nb_players;
-    int animationSpeed = 100;
-    CheckBox pyramid ;
+    private LinearLayout root, toHide ;
+    private RelativeLayout mainLayout ;
+    private TextView nb_players;
+    private int animationSpeed = 100;
+    private CheckBox pyramid ;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
