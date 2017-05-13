@@ -230,7 +230,7 @@ public class ContentDAO {
 
         // Selection de tous les content avec un ttl=0
         Cursor cursor = db.rawQuery("select * from " + TABLE_CONTENT + " where " + COL_TTL + "=0", new  String[]{});
-        cursor.moveToPosition(Operations.random_int(1, cursor.getCount()));
+        cursor.move(Operations.random_int(1, cursor.getCount()));
 
         // Mise à jour du TTL
         Content content = new Content(

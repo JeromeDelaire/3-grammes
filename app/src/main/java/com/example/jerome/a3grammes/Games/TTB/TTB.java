@@ -13,7 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.jerome.a3grammes.Games.Global.Player;
-import com.example.jerome.a3grammes.Games.TTB.Database.Helper.TTBDatabaseHelper;
+import com.example.jerome.a3grammes.Games.TTB.Database.Helper.TTBDatabaseAccess;
+import com.example.jerome.a3grammes.Games.TTB.Database.Helper.TTBDatabaseOpenHelper;
 import com.example.jerome.a3grammes.Games.TTB.Database.Model.Question;
 import com.example.jerome.a3grammes.Global.Operations;
 import com.example.jerome.a3grammes.R;
@@ -45,13 +46,13 @@ public class TTB extends AppCompatActivity {
     private int sip_count ;
     private CountDownTimer boom ; // At the end of the Timer, actual player must drink sip_count sip
     private int timer ;
-    MediaPlayer clock ;
+
 
      /*-------------------------------------------------------------------------------*/
     /*----GLOBAL VARIABLES-----------------------------------------------------------*/
 
-    TTBDatabaseHelper db ; // For using TTB database
-
+    TTBDatabaseAccess db ; // For using TTB database
+    MediaPlayer clock ;
      /*-------------------------------------------------------------------------------*/
     /*----FUNCTIONS------------------------------------------------------------------*/
 
@@ -73,8 +74,8 @@ public class TTB extends AppCompatActivity {
 
         clock = MediaPlayer.create(getApplicationContext(), R.raw.tick_tock);
 
-        db = new TTBDatabaseHelper(getApplicationContext()); // Create database
-        db.openDB(); // Open db in writable mode
+        db = TTBDatabaseAccess.getInstance(this); // Create database
+        db.open(); // Open db in writable mode
 
         /* When game started */
         if (savedInstanceState==null){
