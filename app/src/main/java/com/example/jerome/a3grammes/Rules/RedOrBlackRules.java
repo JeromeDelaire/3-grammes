@@ -9,8 +9,6 @@ import android.view.MenuItem;
 
 import com.example.jerome.a3grammes.GamesMenu;
 import com.example.jerome.a3grammes.R;
-import com.example.jerome.a3grammes.Settings.MoreOrLessSettings;
-import com.example.jerome.a3grammes.Settings.RedOrBlackSettings;
 
 /**
  * Created by Jerome on 22/02/2017.

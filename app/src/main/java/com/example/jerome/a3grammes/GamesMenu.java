@@ -9,10 +9,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.example.jerome.a3grammes.Rules.MoreOrLessRules;
+import com.example.jerome.a3grammes.Rules.TTBRules;
 import com.example.jerome.a3grammes.Rules.PicoloRules;
 import com.example.jerome.a3grammes.Rules.RedOrBlackRules;
-import com.example.jerome.a3grammes.Settings.MoreOrLessSettings;
+import com.example.jerome.a3grammes.Settings.TTBSettings;
 import com.example.jerome.a3grammes.Settings.PicoloSettings;
 import com.example.jerome.a3grammes.Settings.RedOrBlackSettings;
 
@@ -29,8 +29,8 @@ public class GamesMenu extends AppCompatActivity implements View.OnClickListener
         //Boutons pour choisir le jeu
         picolo = (LinearLayout) findViewById(R.id.picolo_button);
         picolo_rules = (FrameLayout) findViewById(R.id.picolo_rules_button);
-        more_or_less = (LinearLayout) findViewById(R.id.more_or_less_button);
-        more_or_less_rules = (FrameLayout) findViewById(R.id.more_or_less_rules_button);
+        more_or_less = (LinearLayout) findViewById(R.id.ttb_button);
+        more_or_less_rules = (FrameLayout) findViewById(R.id.ttb_rules_button);
         red_or_black = (LinearLayout) findViewById(R.id.red_or_black_button);
         red_or_black_rules = (FrameLayout) findViewById(R.id.red_or_black_rules_button);
 
@@ -60,13 +60,13 @@ public class GamesMenu extends AppCompatActivity implements View.OnClickListener
 
         //Si on clique sur start more or less
         else if(view==more_or_less){
-            Intent myIntent = new Intent(this, MoreOrLessSettings.class);
+            Intent myIntent = new Intent(this, TTBSettings.class);
             startActivityForResult(myIntent, 0);
         }
 
         // Si on clique sur les règles du more or less
         else if(view==more_or_less_rules){
-            Intent myIntent = new Intent(this, MoreOrLessRules.class);
+            Intent myIntent = new Intent(this, TTBRules.class);
             startActivityForResult(myIntent, 0);
         }
 

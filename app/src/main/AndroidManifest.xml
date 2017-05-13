@@ -22,10 +22,10 @@
             </intent-filter>
         </activity>
 
-        <!-- Réglages More or Less. -->
-        <activity android:name=".Settings.MoreOrLessSettings"
+        <!-- Réglages Tic Tac Boom. -->
+        <activity android:name=".Settings.TTBSettings"
             android:windowSoftInputMode="stateHidden"
-            android:theme="@style/MoreOrLessSettingsTheme"/>
+            android:theme="@style/TTBSettingsTheme"/>
 
         <!-- Réglages picolo. -->
         <activity android:name=".Settings.PicoloSettings"
@@ -37,8 +37,8 @@
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/RedOrBlackSettingsTheme"/>
 
-        <!-- Règles More or Less. -->
-        <activity android:name=".Rules.MoreOrLessRules"/>
+        <!-- Règles Tic Tac Boom. -->
+        <activity android:name=".Rules.TTBRules"/>
 
         <!-- Règles Picolo. -->
         <activity android:name=".Rules.PicoloRules"/>
@@ -61,9 +61,9 @@
             android:theme="@style/PicoloTheme"
             android:screenOrientation="landscape"/>
 
-        <!-- Partie More or Less. -->
-        <activity android:name=".Games.MoreOrLess.MoreOrLess"
-            android:theme="@style/MoreOrLessTheme"
+        <!-- Partie de Tic Tac Boom. -->
+        <activity android:name=".Games.TTB.TTB"
+            android:theme="@style/TTBTheme"
             android:screenOrientation="landscape"/>
 
     </application>

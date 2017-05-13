@@ -100,7 +100,7 @@
                 android:id="@+id/nb_players_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/MoreOrLessSettingsTheme"
+                style="@style/TTBSettingsTheme"
                 android:gravity="center"
                 android:textSize="@dimen/normal_text_size"/>
 

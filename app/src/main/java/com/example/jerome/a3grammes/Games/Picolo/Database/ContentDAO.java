@@ -15,7 +15,7 @@ import com.example.jerome.a3grammes.Global.Operations;
 
 public class ContentDAO {
 
-    private static final int DB_VERSION = 4;
+    private static final int DB_VERSION = 5;
     private static final String DB_NAME = "picolo.db";
 
     private static final String TABLE_CONTENT = "round";
@@ -152,10 +152,11 @@ public class ContentDAO {
                 cursor.getString(NUM_COL_CONTENT),
                 cursor.getString(NUM_COL_COMPLEMENT),
                 cursor.getInt(NUM_COL_TTL),
-                cursor.getInt(NUM_COL_DONE),
+                1,
                 new String[]{cursor.getString(NUM_COL_NAME1), cursor.getString(NUM_COL_NAME2)}
         );
         content.setId(cursor.getLong(NUM_COL_KEY));
+        update(cursor.getLong(NUM_COL_KEY), content);
         cursor.close();
         return content;
     }
@@ -229,7 +230,7 @@ public class ContentDAO {
 
         // Selection de tous les content avec un ttl=0
         Cursor cursor = db.rawQuery("select * from " + TABLE_CONTENT + " where " + COL_TTL + "=0", new  String[]{});
-        cursor.move(Operations.random_int(1, cursor.getCount()));
+        cursor.moveToPosition(Operations.random_int(1, cursor.getCount()));
 
         // Mise à jour du TTL
         Content content = new Content(

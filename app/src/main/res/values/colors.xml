@@ -20,9 +20,9 @@
     <color name="picolo_dumb">#209979</color>
     <color name="picolo_hard">#212121</color>
 
-    <!-- More or Less. -->
-    <color name="primary_more_or_less">#88775b</color>
-    <color name="primary_more_or_less_dark">#493f30</color>
+    <!-- Tic Tac Boom. -->
+    <color name="primary_ttb">#88775b</color>
+    <color name="primary_ttb_dark">#493f30</color>
 
     <!-- Red or Black. -->
     <color name="primary_red_or_black">#015d35</color>
