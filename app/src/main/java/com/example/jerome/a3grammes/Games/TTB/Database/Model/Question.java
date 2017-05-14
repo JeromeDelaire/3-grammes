@@ -11,31 +11,37 @@ import android.os.Parcelable;
 
 public class Question implements Parcelable{
 
-    /* Atttributs */
+    /* Members */
     private long id ;
     private String question ;
     private String answerA ;
     private String answerB ;
     private String answerC ;
     private String answerD ;
+    private String level ;
+    private String division ;
     private int done ; // 0 if question never used, 1 when question used
 
-    /* Constructeurs */
-    public Question(String question, String answerA, String answerB, String answerC, String answerD){
+    /* Constructors */
+    public Question(String question, String answerA, String answerB, String answerC, String answerD, String level, String division){
         this.question = question ;
         this.answerA = answerA ;
         this.answerB = answerB ;
         this.answerC = answerC ;
         this.answerD = answerD ;
+        this.level = level ;
+        this.division = division ;
     }
 
-    public Question(int id, String question, String answerA, String answerB, String answerC, String answerD){
+    public Question(int id, String question, String answerA, String answerB, String answerC, String answerD, String level, String division){
         this.id = id ;
         this.question = question ;
         this.answerA = answerA ;
         this.answerB = answerB ;
         this.answerC = answerC ;
         this.answerD = answerD ;
+        this.level = level ;
+        this.division = division ;
     }
 
     /* Getters */
@@ -61,6 +67,14 @@ public class Question implements Parcelable{
 
     public String getAnswerD() {
         return answerD;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public String getDivision() {
+        return division;
     }
 
     public int getDone() {
@@ -90,6 +104,14 @@ public class Question implements Parcelable{
 
     public void setAnswerD(String answerD) {
         this.answerD = answerD;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public void setDivision(String division) {
+        this.division = division;
     }
 
     public void setDone(int done) {

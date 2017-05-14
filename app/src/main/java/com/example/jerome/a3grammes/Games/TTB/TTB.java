@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.example.jerome.a3grammes.Games.Global.Player;
 import com.example.jerome.a3grammes.Games.TTB.Database.Helper.TTBDatabaseAccess;
-import com.example.jerome.a3grammes.Games.TTB.Database.Helper.TTBDatabaseOpenHelper;
 import com.example.jerome.a3grammes.Games.TTB.Database.Model.Question;
 import com.example.jerome.a3grammes.Global.Operations;
 import com.example.jerome.a3grammes.R;
@@ -103,8 +102,8 @@ public class TTB extends AppCompatActivity {
             actualPlayer = savedInstanceState.getInt("actualPlayer");
             sip_count = savedInstanceState.getInt("sip");
             timer = savedInstanceState.getInt("timer");
-            division_tv.setText(db.getQuestionDivision(actualQuestion));
-            level_tv.setText(db.getQuestionLevel(actualQuestion));
+            division_tv.setText(actualQuestion.getQuestion());
+            level_tv.setText(actualQuestion.getLevel());
             question_tv.setText(actualQuestion.getQuestion());
             setAnswers();
         }
@@ -162,8 +161,8 @@ public class TTB extends AppCompatActivity {
         if ((actualQuestion = db.getRandomQuestion()) != null) { // If return question success
 
             question_tv.setText(actualQuestion.getQuestion()); // Set question text
-            division_tv.setText(db.getQuestionDivision(actualQuestion)); // Set division text
-            level_tv.setText(String.format(getResources().getString(R.string.level_player), db.getQuestionLevel(actualQuestion), players.get(actualPlayer).getName())); // Set Level text
+            division_tv.setText(actualQuestion.getDivision()); // Set division text
+            level_tv.setText(String.format(getResources().getString(R.string.level_player), actualQuestion.getLevel(), players.get(actualPlayer).getName())); // Set Level text
             setAnswers(); // Set answers buttons text
         }
 
@@ -241,9 +240,9 @@ public class TTB extends AppCompatActivity {
         /* If player choose good answer*/
         if(win){
 
-            if(Objects.equals(db.getQuestionLevel(actualQuestion), "facile")) //
+            if(Objects.equals(actualQuestion.getLevel(), "Débutant")) //
                 sip_count = 1 ;
-            else if(Objects.equals(db.getQuestionLevel(actualQuestion), "moyen"))
+            else if(Objects.equals(actualQuestion.getLevel(), "Confirmé"))
                 sip_count = 2 ;
             else
                 sip_count = 3 ;
@@ -256,9 +255,9 @@ public class TTB extends AppCompatActivity {
         /* If user choose bad answer */
         else
         {
-            if(Objects.equals(db.getQuestionLevel(actualQuestion), "facile")) //
+            if(Objects.equals(actualQuestion.getLevel(), "Débutant")) //
                 sip_count = 3 ;
-            else if(Objects.equals(db.getQuestionLevel(actualQuestion), "moyen"))
+            else if(Objects.equals(actualQuestion.getLevel(), "Confirmé"))
                 sip_count = 2 ;
             else
                 sip_count = 1 ;

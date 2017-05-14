@@ -91,7 +91,9 @@ public class TTBDatabaseAccess {
                 cursor.getString(cursor.getColumnIndex(KEY_ANSWER_A)),
                 cursor.getString(cursor.getColumnIndex(KEY_ANSWER_B)),
                 cursor.getString(cursor.getColumnIndex(KEY_ANSWER_C)),
-                cursor.getString(cursor.getColumnIndex(KEY_ANSWER_D))
+                cursor.getString(cursor.getColumnIndex(KEY_ANSWER_D)),
+                cursor.getString(cursor.getColumnIndex(KEY_LEVEL)),
+                cursor.getString(cursor.getColumnIndex(KEY_DIVISION))
         );
 
         question.setId(cursor.getLong(cursor.getColumnIndex(KEY_ID)));
@@ -125,32 +127,5 @@ public class TTBDatabaseAccess {
 
     }
 
-    /* Get The level of a question */
-    public String getQuestionLevel(Question question){
-
-        String selectQuery = " SELECT " + KEY_LEVEL + " FROM " + TABLE_QUESTIONS +
-                " WHERE " + KEY_ID + "=" + question.getId() ;
-
-        Cursor cursor = database.rawQuery(selectQuery, null);
-        cursor.moveToFirst();
-        String level = cursor.getString(cursor.getColumnIndex(KEY_LEVEL));
-        cursor.close();
-
-        return  level ;
-    }
-
-    /* Get The division of a question */
-    public String getQuestionDivision(Question question){
-
-        String selectQuery = " SELECT " + KEY_DIVISION + " FROM " + TABLE_QUESTIONS +
-                " WHERE " + KEY_ID + "=" + question.getId() ;
-
-        Cursor cursor = database.rawQuery(selectQuery, null);
-        cursor.moveToFirst();
-        String division = cursor.getString(cursor.getColumnIndex(KEY_DIVISION));
-        cursor.close();
-
-        return  division ;
-    }
 
 }

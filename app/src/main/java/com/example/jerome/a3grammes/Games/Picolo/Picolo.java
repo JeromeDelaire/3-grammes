@@ -2,10 +2,8 @@ package com.example.jerome.a3grammes.Games.Picolo;
 
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -17,14 +15,11 @@ import android.widget.TextView;
 
 import com.example.jerome.a3grammes.Games.Global.Player;
 import com.example.jerome.a3grammes.Games.Picolo.Database.Content;
-import com.example.jerome.a3grammes.Games.Picolo.Database.ContentDAO;
-import com.example.jerome.a3grammes.Games.Picolo.Database.PicoloDB;
+import com.example.jerome.a3grammes.Games.Picolo.Database.Helper.PicoloDatabaseAccess;
 import com.example.jerome.a3grammes.Global.Operations;
 import com.example.jerome.a3grammes.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -38,10 +33,10 @@ public class Picolo extends AppCompatActivity {
     private static final int TTL_MAX = 20 ;
     private ArrayList<Player> players ;
     private TextView type, contentTV;
-    private ContentDAO database ;
     private RelativeLayout root ;
     private String actualContent = "" ;
     private String actualType = "" ;
+    private PicoloDatabaseAccess database ;
 
     /*
      * Création de l'activité
@@ -57,8 +52,8 @@ public class Picolo extends AppCompatActivity {
         contentTV = (TextView) findViewById(R.id.content_text_view);
         root = (RelativeLayout) findViewById(R.id.picolo_main_layout);
 
-        database = new ContentDAO(this);
-        database.openDB();
+        database = PicoloDatabaseAccess.getInstance(this);
+        database.open();
 
         // Au lancement de la partie
         if(savedInstanceState==null){
@@ -76,9 +71,6 @@ public class Picolo extends AppCompatActivity {
             contentTV.setText(actualContent);
             type.setText(actualType);
         }
-
-        if(PicoloDB.updated)
-            addContents();
 
         for(int i = 1 ; i<database.getSize() ; i++)
             database.updateNames(i, getRandomPlayers());
@@ -118,7 +110,7 @@ public class Picolo extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void selectRandomContent(){
 
-        Content content = null;
+        Content content ;
 
         // On sélectionne un complément aléatoirement parmis ceux disponibles
         content = selectRandomComplement() ;
@@ -160,24 +152,24 @@ public class Picolo extends AppCompatActivity {
 
         Window window = this.getWindow();
         // Normal cat
-        if(Objects.equals(content.getCat(), "normal")){
+        if(Objects.equals(content.getCat(), "Normal")){
             root.setBackgroundResource(R.color.picolo_normal);
             window.setStatusBarColor(getResources().getColor(R.color.picolo_normal));
         }
         // Dumb cat
-        else if(Objects.equals(content.getCat(), "dumb")){
+        else if(Objects.equals(content.getCat(), "Débiles")){
             root.setBackgroundResource(R.color.picolo_dumb);
             window.setStatusBarColor(getResources().getColor(R.color.picolo_dumb));
         }
 
         // sexy cat
-        else if(Objects.equals(content.getCat(), "sexy")){
+        else if(Objects.equals(content.getCat(), "Sexy")){
             root.setBackgroundResource(R.color.picolo_sexy);
             window.setStatusBarColor(getResources().getColor(R.color.picolo_sexy));
         }
 
         // Hard cat
-        else if(Objects.equals(content.getCat(), "hard")){
+        else if(Objects.equals(content.getCat(), "Hard")){
             root.setBackgroundResource(R.color.picolo_hard);
             window.setStatusBarColor(getResources().getColor(R.color.picolo_hard));
         }
@@ -186,9 +178,8 @@ public class Picolo extends AppCompatActivity {
     }
 
     private Content selectRandomComplement(){
-        int nbComlementReady = 0 ;
         // Si il n'y a pas de compléments prêt on retourne null
-        if((nbComlementReady=database.getNbComplementReady())==0)
+        if((database.getNbComplementReady())==0)
             return null ;
         else{
             return database.getRandomComplement();
@@ -283,106 +274,5 @@ public class Picolo extends AppCompatActivity {
         final String[] months = getResources().getStringArray(R.array.Months);
         int rand = (int) (Math.random() * 12);
         return (months[rand]);
-    }
-
-    private void addContents(){
-        // Normal cat contents
-        List<String> normalContents = Arrays.asList(getResources().getStringArray(R.array.picolo_normals));
-        List<String> gamesContents = Arrays.asList(getResources().getStringArray(R.array.picolo_games));
-        List<String> maledictionsContents = Arrays.asList(getResources().getStringArray(R.array.picolo_maledictions));
-        List<String> endMaledictionsContents = Arrays.asList(getResources().getStringArray(R.array.picolo_end_maledictions));
-        List<String> youPreferContents = Arrays.asList(getResources().getStringArray(R.array.picolo_prefers));
-
-        // Dumb cat contents
-        List<String> normalContentsDumb = Arrays.asList(getResources().getStringArray(R.array.picolo_normals_dumb));
-        List<String> gamesContentsDumb = Arrays.asList(getResources().getStringArray(R.array.picolo_games_dumb));
-        List<String> maledictionsContentsDumb = Arrays.asList(getResources().getStringArray(R.array.picolo_maledictions_dumb));
-        List<String> endMaledictionsContentsDumb = Arrays.asList(getResources().getStringArray(R.array.picolo_end_maledictions_dumb));
-        List<String> youPreferContentsDumb = Arrays.asList(getResources().getStringArray(R.array.picolo_prefers_dumb));
-
-        // Sexy cat contents
-        List<String> normalContentsSexy = Arrays.asList(getResources().getStringArray(R.array.picolo_normals_sexy));
-        List<String> gamesContentsSexy = Arrays.asList(getResources().getStringArray(R.array.picolo_games_sexy));
-        List<String> maledictionsContentsSexy = Arrays.asList(getResources().getStringArray(R.array.picolo_maledictions_sexy));
-        List<String> endMaledictionsContentsSexy = Arrays.asList(getResources().getStringArray(R.array.picolo_end_maledictions_sexy));
-        List<String> youPreferContentsSexy = Arrays.asList(getResources().getStringArray(R.array.picolo_prefers_sexy));
-
-        // Hard cat contents
-        List<String> normalContentsHard = Arrays.asList(getResources().getStringArray(R.array.picolo_normals_hard));
-        List<String> gamesContentsHard = Arrays.asList(getResources().getStringArray(R.array.picolo_games_hard));
-        List<String> maledictionsContentsHard = Arrays.asList(getResources().getStringArray(R.array.picolo_maledictions_hard));
-        List<String> endMaledictionsContentsHard = Arrays.asList(getResources().getStringArray(R.array.picolo_end_maledictions_hard));
-        List<String> youPreferContentsHard = Arrays.asList(getResources().getStringArray(R.array.picolo_prefers_hard));
-
-        ArrayList<Content> contents = new ArrayList<>();
-
-            /*
-             * Normal cat contents
-             */
-        //Création des contents normaux
-        for (int i = 0; i < normalContents.size(); i++)
-            contents.add(new Content("normal", getResources().getString(R.string.normal), normalContents.get(i), null, -1, 0, getRandomPlayers()));
-        // Création des contenus "Jeux"
-        for (int i = 0; i < gamesContents.size(); i++)
-            contents.add(new Content("normal", getResources().getString(R.string.game), gamesContents.get(i), null, -1, 0, getRandomPlayers()));
-        // Création des contenus "Malédictions"
-        for (int i = 0; i < maledictionsContents.size(); i++)
-            contents.add(new Content("normal", getResources().getString(R.string.malediction), maledictionsContents.get(i), endMaledictionsContents.get(i), -1, 0, getRandomPlayers()));
-        // Création des contenus "tu préfères"
-        for(int i=0 ; i<youPreferContents.size() ; i++)
-            contents.add(new Content("normal", getResources().getString(R.string.you_prefer), youPreferContents.get(i), null, -1, 0, getRandomPlayers()));
-
-             /*
-             * Dumb cat contents
-             */
-        //Création des contents normaux
-        for (int i = 0; i < normalContentsDumb.size(); i++)
-            contents.add(new Content("dumb", getResources().getString(R.string.normal), normalContentsDumb.get(i), null, -1, 0, getRandomPlayers()));
-        // Création des contenus "Jeux"
-        for (int i = 0; i < gamesContentsDumb.size(); i++)
-            contents.add(new Content("dumb", getResources().getString(R.string.game), gamesContentsDumb.get(i), null, -1, 0, getRandomPlayers()));
-        // Création des contenus "Malédictions"
-        for (int i = 0; i < maledictionsContentsDumb.size(); i++)
-            contents.add(new Content("dumb", getResources().getString(R.string.malediction), maledictionsContentsDumb.get(i), endMaledictionsContentsDumb.get(i), -1, 0, getRandomPlayers()));
-        // Création des contenus "tu préfères"
-        for(int i=0 ; i<youPreferContentsDumb.size() ; i++)
-            contents.add(new Content("dumb", getResources().getString(R.string.you_prefer), youPreferContentsDumb.get(i), null, -1, 0, getRandomPlayers()));
-
-            /*
-             * Sexy cat contents
-             */
-        //Création des contents normaux
-        for (int i = 0; i < normalContentsSexy.size(); i++)
-            contents.add(new Content("sexy", getResources().getString(R.string.normal), normalContentsSexy.get(i), null, -1, 0, getRandomPlayers()));
-        // Création des contenus "Jeux"
-        for (int i = 0; i < gamesContentsSexy.size(); i++)
-            contents.add(new Content("sexy", getResources().getString(R.string.game), gamesContentsSexy.get(i), null, -1, 0, getRandomPlayers()));
-        // Création des contenus "Malédictions"
-        for (int i = 0; i < maledictionsContentsSexy.size(); i++)
-            contents.add(new Content("sexy", getResources().getString(R.string.malediction), maledictionsContentsSexy.get(i), endMaledictionsContentsSexy.get(i), -1, 0, getRandomPlayers()));
-        // Création des contenus "tu préfères"
-        for(int i=0 ; i<youPreferContentsSexy.size() ; i++)
-            contents.add(new Content("sexy", getResources().getString(R.string.you_prefer), youPreferContentsSexy.get(i), null, -1, 0, getRandomPlayers()));
-
-            /*
-             * Hard cat contents
-             */
-        //Création des contents normaux
-        for (int i = 0; i < normalContentsHard.size(); i++)
-            contents.add(new Content("hard", getResources().getString(R.string.normal), normalContentsHard.get(i), null, -1, 0, getRandomPlayers()));
-        // Création des contenus "Jeux"
-        for (int i = 0; i < gamesContentsHard.size(); i++)
-            contents.add(new Content("hard", getResources().getString(R.string.game), gamesContentsHard.get(i), null, -1, 0, getRandomPlayers()));
-        // Création des contenus "Malédictions"
-        for (int i = 0; i < maledictionsContentsHard.size(); i++)
-            contents.add(new Content("hard", getResources().getString(R.string.malediction), maledictionsContentsHard.get(i), endMaledictionsContentsHard.get(i), -1, 0, getRandomPlayers()));
-        // Création des contenus "tu préfères"
-        for(int i=0 ; i<youPreferContentsHard.size() ; i++)
-            contents.add(new Content("hard", getResources().getString(R.string.you_prefer), youPreferContentsHard.get(i), null, -1, 0, getRandomPlayers()));
-
-        for (int i = 0; i < contents.size(); i++)
-            database.insert(contents.get(i));
-
-        PicoloDB.updated = false ;
     }
 }
