@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.jerome.a3grammes.Games.Picolo.Database.Content;
+import com.example.jerome.a3grammes.Games.Picolo.Database.Model.Content;
 import com.example.jerome.a3grammes.Global.Operations;
 
 /**

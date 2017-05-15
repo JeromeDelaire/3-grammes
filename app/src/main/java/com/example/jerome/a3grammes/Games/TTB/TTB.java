@@ -52,6 +52,9 @@ public class TTB extends AppCompatActivity {
 
     TTBDatabaseAccess db ; // For using TTB database
     MediaPlayer clock ;
+    MediaPlayer good_answer ;
+    MediaPlayer wrong_answer ;
+
      /*-------------------------------------------------------------------------------*/
     /*----FUNCTIONS------------------------------------------------------------------*/
 
@@ -71,6 +74,7 @@ public class TTB extends AppCompatActivity {
         answerC = (Button) findViewById(R.id.answerC);
         answerD = (Button) findViewById(R.id.answerD);
 
+        /* Sounds */
         clock = MediaPlayer.create(getApplicationContext(), R.raw.tick_tock);
 
         db = TTBDatabaseAccess.getInstance(this); // Create database
@@ -148,6 +152,14 @@ public class TTB extends AppCompatActivity {
         savedInstanceState.putInt("timer", timer);
     }
 
+    /* When activity is finished */
+    public void onStop () {
+
+        if(boom!=null)
+            boom.cancel();
+        super.onStop();
+    }
+
     /*
      * Display random question with 4 answers
      * Close activity when no question are available
@@ -189,9 +201,21 @@ public class TTB extends AppCompatActivity {
     /*
      * Define if the answer click by player is the good answer or not
      * Return true if is good answer, else false
+     * Play song indicate if is right or wrond answer
      */
     private boolean isGoodAnswer(String answer){
-        return Objects.equals(actualQuestion.getAnswerA(), answer);
+        boolean correct ;
+        if((correct = Objects.equals(actualQuestion.getAnswerA(), answer))){
+            good_answer = MediaPlayer.create(getApplicationContext(), R.raw.right_answer);
+            good_answer.start();
+        }
+
+        else{
+            wrong_answer = MediaPlayer.create(getApplicationContext(), R.raw.wrong_answer);
+            wrong_answer.start();
+        }
+
+        return correct ;
     }
 
     /* Change actualPlayer = next player */
@@ -281,7 +305,6 @@ public class TTB extends AppCompatActivity {
     /* Show alert dialog at then end of countdown */
     private void boomDialog(){
 
-        boom.cancel();
         clock.stop();
 
         new AlertDialog.Builder(this, R.style.MyAlertDialogTheme)
@@ -301,13 +324,6 @@ public class TTB extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 timer-- ;
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        division_tv.setText(String.valueOf(timer));
-                    }
-                });
-
             }
 
             @Override

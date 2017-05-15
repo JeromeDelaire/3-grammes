@@ -2,9 +2,9 @@
     <string name="app_name">3 grammes</string>
 
     <!-- Nom des jeux. -->
-    <string name="picolo_title">Dans ta gueule !</string>
-    <string name="ttb_title">Tic Tac Boom !</string>
-    <string name="red_or_black_title">Le cardinal</string>
+    <string name="picolo_title">Dans Ta Gueule</string>
+    <string name="ttb_title">Tic Tac Boom</string>
+    <string name="red_or_black_title">Le Cardinal</string>
 
     <!-- Menu écran principal. -->
     <string name="about">A propos</string>

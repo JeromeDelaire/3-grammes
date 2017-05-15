@@ -14,7 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.jerome.a3grammes.Games.Global.Player;
-import com.example.jerome.a3grammes.Games.Picolo.Database.Content;
+import com.example.jerome.a3grammes.Games.Picolo.Database.Model.Content;
 import com.example.jerome.a3grammes.Games.Picolo.Database.Helper.PicoloDatabaseAccess;
 import com.example.jerome.a3grammes.Global.Operations;
 import com.example.jerome.a3grammes.R;

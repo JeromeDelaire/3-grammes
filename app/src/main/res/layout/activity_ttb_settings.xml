@@ -3,7 +3,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main_layout_settings"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/ttb_gradient">
 
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
@@ -89,13 +90,44 @@
 
     </LinearLayout>
 
-    <Button
-        android:layout_centerHorizontal="true"
-        android:id="@+id/but_run_game"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/button_size"
-        android:text="@string/run_game"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/primary_margin"/>
+        android:layout_centerHorizontal="true"
+        android:background="@color/primary_ttb_dark">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/settings"
+                android:layout_width="@dimen/little_button_size"
+                android:layout_height="@dimen/little_button_size"
+                android:layout_margin="@dimen/primary_margin"
+                android:background="@drawable/ic_settings" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/but_run_game"
+                android:layout_width="@dimen/little_button_size"
+                android:layout_height="@dimen/little_button_size"
+                android:layout_margin="@dimen/primary_margin"
+                android:background="@drawable/ic_start" />
+
+        </FrameLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

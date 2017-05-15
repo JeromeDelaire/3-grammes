@@ -14,19 +14,19 @@
 
     <!-- Picolo. -->
     <color name="primary_picolo">#9ab0ba</color>
-    <color name="primary_picolo_dark">#5b6b73</color>
+    <color name="primary_picolo_dark">#455158</color>
     <color name="picolo_normal">#9ab0ba</color>
     <color name="picolo_sexy">#992052</color>
     <color name="picolo_dumb">#209979</color>
     <color name="picolo_hard">#212121</color>
 
     <!-- Tic Tac Boom. -->
-    <color name="primary_ttb">#88775b</color>
-    <color name="primary_ttb_dark">#493f30</color>
+    <color name="primary_ttb">#a67071</color>
+    <color name="primary_ttb_dark">#492d2d</color>
 
     <!-- Red or Black. -->
-    <color name="primary_red_or_black">#015d35</color>
-    <color name="primary_red_or_black_dark">#081a10</color>
+    <color name="primary_red_or_black">#708c38</color>
+    <color name="primary_red_or_black_dark">#35411e</color>
 
     <!-- Dark Alert Dialog. -->
     <color name="alert_dialog_background">#1bffffff</color>

@@ -7,7 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.jerome.a3grammes.Rules.TTBRules;
 import com.example.jerome.a3grammes.Rules.PicoloRules;
@@ -18,8 +21,9 @@ import com.example.jerome.a3grammes.Settings.RedOrBlackSettings;
 
 public class GamesMenu extends AppCompatActivity implements View.OnClickListener{
 
-    FrameLayout picolo_rules, more_or_less_rules, red_or_black_rules ;
-    LinearLayout picolo, more_or_less, red_or_black ;
+    private ImageButton picolo_rules, more_or_less_rules, red_or_black_rules ;
+    private RelativeLayout picolo, more_or_less, red_or_black ;
+    private FrameLayout picolo_icon_container ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +31,15 @@ public class GamesMenu extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_games_menu);
 
         //Boutons pour choisir le jeu
-        picolo = (LinearLayout) findViewById(R.id.picolo_button);
-        picolo_rules = (FrameLayout) findViewById(R.id.picolo_rules_button);
-        more_or_less = (LinearLayout) findViewById(R.id.ttb_button);
-        more_or_less_rules = (FrameLayout) findViewById(R.id.ttb_rules_button);
-        red_or_black = (LinearLayout) findViewById(R.id.red_or_black_button);
-        red_or_black_rules = (FrameLayout) findViewById(R.id.red_or_black_rules_button);
+        picolo = (RelativeLayout) findViewById(R.id.picolo_button);
+        picolo_rules = (ImageButton) findViewById(R.id.picolo_rules_button);
+        more_or_less = (RelativeLayout) findViewById(R.id.ttb_button);
+        more_or_less_rules = (ImageButton) findViewById(R.id.ttb_rules_button);
+        red_or_black = (RelativeLayout) findViewById(R.id.red_or_black_button);
+        red_or_black_rules = (ImageButton) findViewById(R.id.red_or_black_rules_button);
+
+        picolo_icon_container = (FrameLayout) findViewById(R.id.picolo_icon_container);
+
 
         //Ajout des listeners aux boutons
         picolo.setOnClickListener(this);
