@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.jerome.a3grammes.Games.Global.Player;
@@ -33,8 +34,9 @@ public class TTB extends AppCompatActivity {
     /*----MEMBERS DECLARATION--------------------------------------------------------*/
 
     /* Widgets, Layouts ... */
-    private TextView question_tv, division_tv, level_tv ;
+    private TextView question_tv, division_tv, level_tv, time_left_tv ;
     private Button answerA, answerB, answerC, answerD ;
+    private ProgressBar time_left ;
 
     /* Game informations */
     private ArrayList<Player> players ;
@@ -51,9 +53,9 @@ public class TTB extends AppCompatActivity {
     /*----GLOBAL VARIABLES-----------------------------------------------------------*/
 
     TTBDatabaseAccess db ; // For using TTB database
-    MediaPlayer clock ;
     MediaPlayer good_answer ;
     MediaPlayer wrong_answer ;
+    boolean tick = false ;
 
      /*-------------------------------------------------------------------------------*/
     /*----FUNCTIONS------------------------------------------------------------------*/
@@ -68,14 +70,15 @@ public class TTB extends AppCompatActivity {
         /* Find views */
         question_tv = (TextView) findViewById(R.id.question);
         division_tv = (TextView) findViewById(R.id.division);
+        time_left_tv = (TextView) findViewById(R.id.time_left_tv);
         level_tv = (TextView) findViewById(R.id.level);
+        time_left = (ProgressBar) findViewById(R.id.time_left);
         answerA = (Button) findViewById(R.id.answerA);
         answerB = (Button) findViewById(R.id.answerB);
         answerC = (Button) findViewById(R.id.answerC);
         answerD = (Button) findViewById(R.id.answerD);
 
         /* Sounds */
-        clock = MediaPlayer.create(getApplicationContext(), R.raw.tick_tock);
 
         db = TTBDatabaseAccess.getInstance(this); // Create database
         db.open(); // Open db in writable mode
@@ -93,6 +96,7 @@ public class TTB extends AppCompatActivity {
 
             /* Random duration for boom timer */
             timer = Operations.random_int(30,60);
+            time_left.setMax(timer);
             createTimer();
 
             /* Display first question */
@@ -168,7 +172,6 @@ public class TTB extends AppCompatActivity {
 
         createTimer();
         boom.start();
-        clock.start();
 
         if ((actualQuestion = db.getRandomQuestion()) != null) { // If return question success
 
@@ -238,7 +241,11 @@ public class TTB extends AppCompatActivity {
 
     /* Open an alert dialog when user touch the back button */
     protected void exitByBackKey() {
-        new AlertDialog.Builder(this, R.style.MyAlertDialogTheme)
+
+        boom.cancel();
+        
+        new AlertDialog.Builder(this, R.style.TTBAlertDialog)
+                .setTitle(R.string.exit)
                 .setMessage(getResources().getString(R.string.alert_exit_game))
                 .setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
@@ -247,8 +254,16 @@ public class TTB extends AppCompatActivity {
                 })
                 .setNegativeButton(getResources().getString(R.string.no), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
+                        createTimer();
+                        boom.start();
                     }
-                })
+                }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                createTimer();
+                boom.start();
+            }
+        })
                 .show();
     }
 
@@ -256,13 +271,13 @@ public class TTB extends AppCompatActivity {
     private void showCorrectAnswer(final boolean win){
 
         boom.cancel();
-        clock.stop();
 
         int sip_count ;
-        String message ;
+        String message, title ;
 
         /* If player choose good answer*/
         if(win){
+            title = getResources().getString(R.string.right_answer);
 
             if(Objects.equals(actualQuestion.getLevel(), "Débutant")) //
                 sip_count = 1 ;
@@ -279,6 +294,8 @@ public class TTB extends AppCompatActivity {
         /* If user choose bad answer */
         else
         {
+            title = getResources().getString(R.string.wrong_answer);
+
             if(Objects.equals(actualQuestion.getLevel(), "Débutant")) //
                 sip_count = 3 ;
             else if(Objects.equals(actualQuestion.getLevel(), "Confirmé"))
@@ -286,11 +303,12 @@ public class TTB extends AppCompatActivity {
             else
                 sip_count = 1 ;
 
-            message = String.format(getResources().getString(R.string.ttb_lose), actualQuestion.getAnswerA(), players.get(actualPlayer).getName(), sip_count);
+            message = String.format(getResources().getString(R.string.ttb_lose), actualQuestion.getAnswerA(), sip_count, players.get(actualPlayer).getName());
         }
 
 
-        new AlertDialog.Builder(this, R.style.MyAlertDialogTheme)
+        new AlertDialog.Builder(this, R.style.TTBAlertDialog)
+                .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
@@ -299,35 +317,66 @@ public class TTB extends AppCompatActivity {
                             nextPlayer();
                         displayRandomQuestion();
                     }
-                }).show();
+                }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                if(win)
+                    nextPlayer();
+                displayRandomQuestion();
+            }
+        })
+                .show();
     }
 
     /* Show alert dialog at then end of countdown */
     private void boomDialog(){
 
-        clock.stop();
-
-        new AlertDialog.Builder(this, R.style.MyAlertDialogTheme)
+        new AlertDialog.Builder(this, R.style.TTBAlertDialog)
+                .setTitle(R.string.ttb_boom_title)
                 .setMessage(String.format(getResources().getString(R.string.ttb_boom), players.get(actualPlayer).getName(), sip_count))
                 .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         sip_count = 0 ;
+                        time_left.setMax(timer);
+                        time_left.setProgress(0);
                         displayRandomQuestion();
                     }
-                }).show();
+                }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                sip_count = 0 ;
+                time_left.setMax(timer);
+                time_left.setProgress(0);
+                displayRandomQuestion();
+            }
+        })
+                .show();
     }
 
     private void createTimer(){
 
-        boom = new CountDownTimer(timer*1000, 1000) {
+        boom = new CountDownTimer(timer*1000, 500) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timer-- ;
+                if(tick){
+                    tick = false ;
+                }
+
+                else{
+                    tick = true ;
+                    timer-- ;
+                    time_left.setProgress(time_left.getMax()-timer-1);
+                    time_left_tv.setText(String.valueOf(timer+1));
+                }
             }
 
             @Override
             public void onFinish() {
+                tick = true ;
+                timer--;
+                time_left.setProgress(time_left.getMax()-timer-1);
+                time_left_tv.setText(String.valueOf(timer+1));
                 MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.explosion);
                 mp.start();
                 timer = Operations.random_int(30, 60);

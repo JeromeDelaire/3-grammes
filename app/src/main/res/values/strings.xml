@@ -67,6 +67,7 @@
     <string name="no">Non</string>
     <string name="ok">OK</string>
     <string name="nb_players">%1$d joueurs</string>
+    <string name="exit">Quitter</string>
 
     <!--> Nom des cartes. -->
     <string name="as">As</string>
@@ -115,7 +116,10 @@
     <!--**** TIC TAC BOOM ***********************************************************************-->
 
     <string name="level_player">Question %1$s pour %2$s : </string>
-    <string name="ttb_win">Bravo ! Tu as répondu correctement, %1$d gorgée(s) en plus au compteur !</string>
-    <string name="ttb_lose">Perdu ! La bonne réponse était : %1$s. %2$s, prends %3$d gorgée(s) !</string>
-    <string name="ttb_boom">Boooom ! %1$s prends %2$d gorgée(s) !</string>
+    <string name="ttb_win">%1$d gorgée(s) en plus au compteur !</string>
+    <string name="ttb_lose">Bonne réponse : %1$s.\n%2$d gorgée(s) pour %3$s !</string>
+    <string name="ttb_boom">%1$s prends %2$d gorgée(s) !</string>
+    <string name="ttb_boom_title">Boom !</string>
+    <string name="wrong_answer">Mauvaise réponse !</string>
+    <string name="right_answer">Bonne réponse !</string>
 </resources>

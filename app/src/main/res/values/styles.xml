@@ -130,7 +130,7 @@
 
     <!--> Division of question for TTB -->
     <style name="TTBDivisionQuestionText">
-        <item name="android:textSize">50sp</item>
+        <item name="android:textSize">40sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:gravity">center</item>
@@ -139,29 +139,45 @@
 
     <!--> Level of question for TTB -->
     <style name="TTBLevelQuestionText">
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textAllCaps">true</item>
+        <item name="android:textAllCaps">false</item>
         <item name="android:gravity">left</item>
         <item name="android:layout_margin">@dimen/primary_margin</item>
     </style>
 
     <!--> Question for TTB -->
     <style name="TTBQuestionText">
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textAllCaps">true</item>
+        <item name="android:textAllCaps">false</item>
         <item name="android:gravity">left</item>
         <item name="android:layout_margin">@dimen/primary_margin</item>
     </style>
 
+    <!--> time left for TTB -->
+    <style name="TTBTimeLeft">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+
     <!--****************************************************************************************************-->
-    <!--***** OTHER*****************************************************************************************-->
+    <!--***** ALERT DIALOG *****************************************************************************************-->
 
     <!-- Dark Alert DIalog. -->
-    <style name="MyAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="MyAlertDialogTheme" parent="@android:style/Theme.Dialog">
         <item name="android:background">@color/alert_dialog_background</item>
         <item name="android:textColor">@color/alert_dialog_text</item>
+    </style>
+
+    <!-- Dark Alert DIalog. -->
+    <style name="TTBAlertDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:windowBackground">@color/primary_ttb_dark</item>
     </style>
 
     <!--****************************************************************************************************-->
