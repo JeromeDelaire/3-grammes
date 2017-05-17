@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -22,11 +21,9 @@ import android.widget.Toast;
 
 import com.example.jerome.a3grammes.Games.Global.Player;
 import com.example.jerome.a3grammes.Games.Picolo.Picolo;
-import com.example.jerome.a3grammes.Games.RedOrBlack.RedOrBlack;
 import com.example.jerome.a3grammes.GamesMenu;
 import com.example.jerome.a3grammes.R;
 import com.example.jerome.a3grammes.Rules.PicoloRules;
-import com.example.jerome.a3grammes.Rules.RedOrBlackRules;
 
 import java.util.ArrayList;
 
@@ -37,7 +34,6 @@ import java.util.ArrayList;
 
 public class PicoloSettings extends AppCompatActivity {
     private LinearLayout root, toHide ;
-    private RelativeLayout mainLayout ;
     private TextView nb_players;
     private int animationSpeed = 100;
     private CheckBox sexy, dumb, hard ;
@@ -47,7 +43,7 @@ public class PicoloSettings extends AppCompatActivity {
         setContentView(R.layout.activity_picolo_settings);
 
         root = (LinearLayout) findViewById(R.id.names_layout);
-        mainLayout = (RelativeLayout) findViewById(R.id.main_layout_settings);
+        RelativeLayout mainLayout = (RelativeLayout) findViewById(R.id.main_layout_settings);
         nb_players = (TextView) findViewById(R.id.nb_players_text_view);
         toHide = (LinearLayout) findViewById(R.id.menu_to_hide);
         sexy = (CheckBox) findViewById(R.id.sexy_cat);
@@ -83,7 +79,7 @@ public class PicoloSettings extends AppCompatActivity {
         });
 
         // Bouton pour lancer la partie
-        final Button runGame = (Button) findViewById(R.id.but_run_game);
+        final LinearLayout runGame = (LinearLayout) findViewById(R.id.but_run_game);
         runGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,8 +119,6 @@ public class PicoloSettings extends AppCompatActivity {
                         hide();
                     }
 
-                }else{
-                    // show
                 }
             }
         });

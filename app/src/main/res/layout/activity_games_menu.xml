@@ -1,216 +1,295 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:foo="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/menu_background">
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <!-- Picolo tile -->
-            <RelativeLayout
-                android:id="@+id/picolo_button"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/picolo_gradient"
-                android:layout_margin="@dimen/tiles_margin">
+                android:background="@color/grey">
 
-                <FrameLayout
-                    android:id="@+id/picolo_icon_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/primary_margin"
-                        android:layout_marginRight="@dimen/primary_margin"
-                        android:layout_marginTop="@dimen/big_margin"
-                        android:layout_marginBottom="@dimen/big_margin"
-                        android:background="@drawable/ic_beer"/>
-
-                </FrameLayout>
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tv_title_settings"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/primary_picolo_dark"
-                    android:layout_below="@id/picolo_icon_container"
-                    android:orientation="horizontal">
+                    style="@style/MainTitle"
+                    android:text="@string/app_name"
+                    android:textColor="@color/black"/>
 
-                    <com.example.jerome.a3grammes.Global.TextViewPlus
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/picolo_title"
-                        style="@style/TilesTextTheme"
-                        android:layout_weight="0.5"
-                        foo:customFont="Sketch_Block.ttf"
-                        android:lines="1"
-                        singleLine="false"
-                        android:ellipsize="end"/>
+            </FrameLayout>
 
-                    <ImageButton
-                        android:id="@+id/picolo_rules_button"
-                        android:layout_width="@dimen/rules_icon_size"
-                        android:layout_height="@dimen/rules_icon_size"
-                        android:background="@drawable/ic_info"
-                        android:layout_marginRight="@dimen/primary_margin"
-                        android:layout_marginTop="@dimen/primary_margin"
-                        android:layout_marginBottom="@dimen/primary_margin"
-                        />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/black"
+                android:layout_marginBottom="30dp"/>
 
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <!-- Tic Tac Boom tile -->
-            <RelativeLayout
-                android:id="@+id/ttb_button"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/ttb_gradient"
-                android:layout_margin="@dimen/tiles_margin">
+                android:orientation="horizontal">
 
-                <FrameLayout
-                    android:id="@+id/ttb_icon_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/primary_margin"
-                        android:layout_marginRight="@dimen/primary_margin"
-                        android:layout_marginTop="@dimen/big_margin"
-                        android:layout_marginBottom="@dimen/big_margin"
-                        android:background="@drawable/ic_beer"/>
-
-                </FrameLayout>
-
-                <LinearLayout
+                <!-- Picolo tile -->
+                <RelativeLayout
+                    android:id="@+id/picolo_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/primary_ttb_dark"
-                    android:layout_below="@id/ttb_icon_container"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:background="@drawable/picolo_gradient"
+                    android:layout_margin="@dimen/tiles_margin">
 
-                    <com.example.jerome.a3grammes.Global.TextViewPlus
+                    <FrameLayout
+                        android:id="@+id/picolo_icon_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/primary_margin"
+                            android:layout_marginRight="@dimen/primary_margin"
+                            android:layout_marginTop="@dimen/big_margin"
+                            android:layout_marginBottom="@dimen/big_margin"
+                            android:background="@drawable/ic_beer"/>
+
+                    </FrameLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/ttb_title"
-                        style="@style/TilesTextTheme"
-                        android:layout_weight="0.5"
-                        foo:customFont="Sketch_Block.ttf"
-                        android:lines="1"
-                        singleLine="false"
-                        android:ellipsize="end"/>
+                        android:background="@color/white"
+                        android:layout_below="@id/picolo_icon_container"
+                        android:orientation="horizontal">
 
-                    <ImageButton
-                        android:id="@+id/ttb_rules_button"
-                        android:layout_width="@dimen/rules_icon_size"
-                        android:layout_height="@dimen/rules_icon_size"
-                        android:background="@drawable/ic_info"
-                        android:layout_marginRight="@dimen/primary_margin"
-                        android:layout_marginTop="@dimen/primary_margin"
-                        android:layout_marginBottom="@dimen/primary_margin"
-                        />
+                        <com.example.jerome.a3grammes.Global.TextViewPlus
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/picolo_title"
+                            style="@style/TilesTextTheme"
+                            android:layout_weight="0.5"
+                            foo:customFont="Sketch_Block.ttf"
+                            android:lines="1"
+                            singleLine="false"
+                            android:ellipsize="end"/>
 
-                </LinearLayout>
+                        <ImageButton
+                            android:id="@+id/picolo_rules_button"
+                            android:layout_width="@dimen/rules_icon_size"
+                            android:layout_height="@dimen/rules_icon_size"
+                            android:background="@drawable/ic_info"
+                            android:backgroundTint="@color/black"
+                            android:layout_marginRight="@dimen/primary_margin"
+                            android:layout_marginTop="@dimen/primary_margin"
+                            android:layout_marginBottom="@dimen/primary_margin"
+                            />
 
-            </RelativeLayout>
+                    </LinearLayout>
 
-            <!-- red or black tile -->
+                </RelativeLayout>
+
+                <!-- Tic Tac Boom tile -->
+                <RelativeLayout
+                    android:id="@+id/ttb_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/ttb_gradient"
+                    android:layout_margin="@dimen/tiles_margin">
+
+                    <FrameLayout
+                        android:id="@+id/ttb_icon_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/primary_margin"
+                            android:layout_marginRight="@dimen/primary_margin"
+                            android:layout_marginTop="@dimen/big_margin"
+                            android:layout_marginBottom="@dimen/big_margin"
+                            android:background="@drawable/ic_beer"/>
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:layout_below="@id/ttb_icon_container"
+                        android:orientation="horizontal">
+
+                        <com.example.jerome.a3grammes.Global.TextViewPlus
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ttb_title"
+                            style="@style/TilesTextTheme"
+                            android:layout_weight="0.5"
+                            foo:customFont="Sketch_Block.ttf"
+                            android:lines="1"
+                            singleLine="false"
+                            android:ellipsize="end"/>
+
+                        <ImageButton
+                            android:id="@+id/ttb_rules_button"
+                            android:layout_width="@dimen/rules_icon_size"
+                            android:layout_height="@dimen/rules_icon_size"
+                            android:background="@drawable/ic_info"
+                            android:backgroundTint="@color/black"
+                            android:layout_marginRight="@dimen/primary_margin"
+                            android:layout_marginTop="@dimen/primary_margin"
+                            android:layout_marginBottom="@dimen/primary_margin"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- red or black tile -->
+                <RelativeLayout
+                    android:id="@+id/red_or_black_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rob_gradient"
+                    android:layout_margin="@dimen/tiles_margin">
+
+                    <FrameLayout
+                        android:id="@+id/red_or_black_icon_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/primary_margin"
+                            android:layout_marginRight="@dimen/primary_margin"
+                            android:layout_marginTop="@dimen/big_margin"
+                            android:layout_marginBottom="@dimen/big_margin"
+                            android:background="@drawable/ic_cards"/>
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:layout_below="@id/red_or_black_icon_container"
+                        android:orientation="horizontal">
+
+                        <com.example.jerome.a3grammes.Global.TextViewPlus
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/red_or_black_title"
+                            style="@style/TilesTextTheme"
+                            android:layout_weight="0.5"
+                            foo:customFont="Sketch_Block.ttf"
+                            android:lines="1"
+                            singleLine="false"
+                            android:ellipsize="end"/>
+
+                        <ImageButton
+                            android:id="@+id/red_or_black_rules_button"
+                            android:layout_width="@dimen/rules_icon_size"
+                            android:layout_height="@dimen/rules_icon_size"
+                            android:background="@drawable/ic_info"
+                            android:layout_marginRight="@dimen/primary_margin"
+                            android:layout_marginTop="@dimen/primary_margin"
+                            android:layout_marginBottom="@dimen/primary_margin"
+                            android:backgroundTint="@color/black"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/comming_soon_gradient"
+                    android:layout_margin="@dimen/tiles_margin">
+
+                    <FrameLayout
+                        android:id="@+id/comming_soon_icon_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/primary_margin"
+                            android:layout_marginRight="@dimen/primary_margin"
+                            android:layout_marginTop="@dimen/big_margin"
+                            android:layout_marginBottom="@dimen/big_margin"
+                            android:background="@drawable/ic_comming_soon"
+                            android:backgroundTint="@color/white"/>
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:layout_below="@id/comming_soon_icon_container"
+                        android:orientation="horizontal">
+
+                        <com.example.jerome.a3grammes.Global.TextViewPlus
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/comming_soon_title"
+                            style="@style/TilesTextTheme"
+                            android:layout_weight="0.5"
+                            foo:customFont="Sketch_Block.ttf"
+                            android:lines="1"
+                            singleLine="false"
+                            android:ellipsize="end"/>
+
+                        <ImageView
+                            android:layout_width="@dimen/rules_icon_size"
+                            android:layout_height="@dimen/rules_icon_size"
+                            android:backgroundTint="@color/white"
+                            android:layout_marginRight="@dimen/primary_margin"
+                            android:layout_marginTop="@dimen/primary_margin"
+                            android:layout_marginBottom="@dimen/primary_margin"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
+    </ScrollView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:id="@+id/red_or_black_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/rob_gradient"
-                android:layout_margin="@dimen/tiles_margin">
-
-                <FrameLayout
-                    android:id="@+id/red_or_black_icon_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/primary_margin"
-                        android:layout_marginRight="@dimen/primary_margin"
-                        android:layout_marginTop="@dimen/big_margin"
-                        android:layout_marginBottom="@dimen/big_margin"
-                        android:background="@drawable/ic_cards"/>
-
-                </FrameLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/primary_red_or_black_dark"
-                    android:layout_below="@id/red_or_black_icon_container"
-                    android:orientation="horizontal">
-
-                    <com.example.jerome.a3grammes.Global.TextViewPlus
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/red_or_black_title"
-                        style="@style/TilesTextTheme"
-                        android:layout_weight="0.5"
-                        foo:customFont="Sketch_Block.ttf"
-                        android:lines="1"
-                        singleLine="false"
-                        android:ellipsize="end"/>
-
-                    <ImageButton
-                        android:id="@+id/red_or_black_rules_button"
-                        android:layout_width="@dimen/rules_icon_size"
-                        android:layout_height="@dimen/rules_icon_size"
-                        android:background="@drawable/ic_info"
-                        android:layout_marginRight="@dimen/primary_margin"
-                        android:layout_marginTop="@dimen/primary_margin"
-                        android:layout_marginBottom="@dimen/primary_margin"
-                        />
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/primary_red_or_black"
-                android:layout_marginLeft="@dimen/tiles_margin"
-                android:layout_marginRight="@dimen/tiles_margin">
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-</ScrollView>
+</RelativeLayout>

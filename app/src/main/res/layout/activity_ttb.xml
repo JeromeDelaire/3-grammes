@@ -27,7 +27,7 @@
                 android:layout_margin="@dimen/primary_margin">
 
                 <ProgressBar
-                    android:id="@+id/time_left"
+                    android:id="@+id/boom_time_left"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -36,7 +36,31 @@
                     android:progressDrawable="@drawable/circular"/>
 
                 <TextView
-                    android:id="@+id/time_left_tv"
+                    android:id="@+id/boom_time_left_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TTBTimeLeft"
+                    />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="@dimen/primary_margin">
+
+                <ProgressBar
+                    android:id="@+id/question_time_left"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:max="100"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/circular"/>
+
+                <TextView
+                    android:id="@+id/question_time_left_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/TTBTimeLeft"

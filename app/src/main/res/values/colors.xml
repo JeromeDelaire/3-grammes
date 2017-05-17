@@ -11,22 +11,30 @@
     <color name="secondary">#55ffffff</color>
     <color name="black">#000000</color>
     <color name="gold">#7c631e</color>
+    <color name="menu_background">#e1e1e1</color>
+    <color name="light_blue">#0088ff</color>
+    <color name="grey">#515151</color>
+    <color name="light_grey">#cacaca</color>
 
     <!-- Picolo. -->
-    <color name="primary_picolo">#9ab0ba</color>
-    <color name="primary_picolo_dark">#455158</color>
+    <color name="primary_picolo">#00a5ca</color>
+    <color name="primary_picolo_dark">#004251</color>
     <color name="picolo_normal">#9ab0ba</color>
     <color name="picolo_sexy">#992052</color>
     <color name="picolo_dumb">#209979</color>
     <color name="picolo_hard">#212121</color>
 
     <!-- Tic Tac Boom. -->
-    <color name="primary_ttb">#a67071</color>
-    <color name="primary_ttb_dark">#492d2d</color>
+    <color name="primary_ttb">#c10006</color>
+    <color name="primary_ttb_dark">#480002</color>
 
     <!-- Red or Black. -->
-    <color name="primary_red_or_black">#708c38</color>
-    <color name="primary_red_or_black_dark">#35411e</color>
+    <color name="primary_red_or_black">#89c400</color>
+    <color name="primary_red_or_black_dark">#304500</color>
+
+    <!-- Comming soon. -->
+    <color name="primary_comming_soon">#aa00c4</color>
+    <color name="primary_comming_soon_dark">#3d0046</color>
 
     <!-- Dark Alert Dialog. -->
     <color name="alert_dialog_background">#1bffffff</color>

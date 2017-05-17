@@ -5,6 +5,7 @@
     <string name="picolo_title">Dans Ta Gueule</string>
     <string name="ttb_title">Tic Tac Boom</string>
     <string name="red_or_black_title">Le Cardinal</string>
+    <string name="comming_soon_title">A venir...</string>
 
     <!-- Menu écran principal. -->
     <string name="about">A propos</string>
@@ -68,6 +69,7 @@
     <string name="ok">OK</string>
     <string name="nb_players">%1$d joueurs</string>
     <string name="exit">Quitter</string>
+    <string name="settings">Réglages</string>
 
     <!--> Nom des cartes. -->
     <string name="as">As</string>
@@ -117,9 +119,10 @@
 
     <string name="level_player">Question %1$s pour %2$s : </string>
     <string name="ttb_win">%1$d gorgée(s) en plus au compteur !</string>
-    <string name="ttb_lose">Bonne réponse : %1$s.\n%2$d gorgée(s) pour %3$s !</string>
+    <string name="ttb_lose">Réponse : %1$s.\n%2$d gorgée(s) pour %3$s !</string>
     <string name="ttb_boom">%1$s prends %2$d gorgée(s) !</string>
     <string name="ttb_boom_title">Boom !</string>
     <string name="wrong_answer">Mauvaise réponse !</string>
     <string name="right_answer">Bonne réponse !</string>
+    <string name="elasped_time">Temps écoulé !</string>
 </resources>

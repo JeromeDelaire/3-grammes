@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -33,7 +32,6 @@ import java.util.ArrayList;
 
 public class RedOrBlackSettings extends AppCompatActivity {
     private LinearLayout root, toHide ;
-    private RelativeLayout mainLayout ;
     private TextView nb_players;
     private int animationSpeed = 100;
     private CheckBox pyramid ;
@@ -43,7 +41,7 @@ public class RedOrBlackSettings extends AppCompatActivity {
         setContentView(R.layout.activity_red_or_black_settings);
 
         root = (LinearLayout) findViewById(R.id.names_layout);
-        mainLayout = (RelativeLayout) findViewById(R.id.main_layout_settings);
+        RelativeLayout mainLayout = (RelativeLayout) findViewById(R.id.main_layout_settings);
         nb_players = (TextView) findViewById(R.id.nb_players_text_view);
         toHide = (LinearLayout) findViewById(R.id.menu_to_hide);
         pyramid = (CheckBox) findViewById(R.id.enable_pyramid_check_box);
@@ -77,7 +75,7 @@ public class RedOrBlackSettings extends AppCompatActivity {
         });
 
         // Bouton pour lancer la partie
-        final Button runGame = (Button) findViewById(R.id.but_run_game);
+        final LinearLayout runGame = (LinearLayout) findViewById(R.id.but_run_game);
         runGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,8 +115,6 @@ public class RedOrBlackSettings extends AppCompatActivity {
                        hide();
                     }
 
-                }else{
-                    // show
                 }
             }
         });

@@ -76,7 +76,7 @@ public class TTBSettings extends AppCompatActivity {
         });
 
         // Bouton pour lancer la partie
-        final Button runGame = (Button) findViewById(R.id.but_run_game);
+        final LinearLayout runGame = (LinearLayout) findViewById(R.id.but_run_game);
         runGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -34,9 +34,9 @@ public class TTB extends AppCompatActivity {
     /*----MEMBERS DECLARATION--------------------------------------------------------*/
 
     /* Widgets, Layouts ... */
-    private TextView question_tv, division_tv, level_tv, time_left_tv ;
+    private TextView question_tv, division_tv, level_tv, boom_time_left_tv, question_time_left_tv;
     private Button answerA, answerB, answerC, answerD ;
-    private ProgressBar time_left ;
+    private ProgressBar boom_time_left_bar, question_time_left_bar;
 
     /* Game informations */
     private ArrayList<Player> players ;
@@ -45,8 +45,9 @@ public class TTB extends AppCompatActivity {
     private Question actualQuestion ;
     private int actualPlayer ;
     private int sip_count ;
-    private CountDownTimer boom ; // At the end of the Timer, actual player must drink sip_count sip
-    private int timer ;
+    private CountDownTimer boom; // At the end of the Timer, actual player must drink sip_count sip
+    private CountDownTimer question_timer ;
+    private int boom_timer, question_time_left;
 
 
      /*-------------------------------------------------------------------------------*/
@@ -55,7 +56,15 @@ public class TTB extends AppCompatActivity {
     TTBDatabaseAccess db ; // For using TTB database
     MediaPlayer good_answer ;
     MediaPlayer wrong_answer ;
-    boolean tick = false ;
+    boolean boom_tick = false ;
+    boolean question_tick = false ;
+
+    /*-------------------------------------------------------------------------------*/
+    /*---- CONSTANTS ---------------------------------------------------------------*/
+
+    static final int MAX_BOOM_TIMER = 60 ;
+    static final int MIN_BOOM_TIMER = 30 ;
+    static final int QUESTION_TIMER = 10 ;
 
      /*-------------------------------------------------------------------------------*/
     /*----FUNCTIONS------------------------------------------------------------------*/
@@ -70,9 +79,14 @@ public class TTB extends AppCompatActivity {
         /* Find views */
         question_tv = (TextView) findViewById(R.id.question);
         division_tv = (TextView) findViewById(R.id.division);
-        time_left_tv = (TextView) findViewById(R.id.time_left_tv);
         level_tv = (TextView) findViewById(R.id.level);
-        time_left = (ProgressBar) findViewById(R.id.time_left);
+
+        boom_time_left_tv = (TextView) findViewById(R.id.boom_time_left_tv);
+        boom_time_left_bar = (ProgressBar) findViewById(R.id.boom_time_left);
+
+        question_time_left_tv = (TextView) findViewById(R.id.question_time_left_tv);
+        question_time_left_bar = (ProgressBar) findViewById(R.id.question_time_left);
+
         answerA = (Button) findViewById(R.id.answerA);
         answerB = (Button) findViewById(R.id.answerB);
         answerC = (Button) findViewById(R.id.answerC);
@@ -94,10 +108,9 @@ public class TTB extends AppCompatActivity {
             Bundle b = getIntent().getExtras();
             players = b.getParcelableArrayList("players"); // Get players list
 
-            /* Random duration for boom timer */
-            timer = Operations.random_int(30,60);
-            time_left.setMax(timer);
-            createTimer();
+            /* Random duration for boom boom_timer */
+            boom_timer = Operations.random_int(MIN_BOOM_TIMER,MAX_BOOM_TIMER);
+            boom_time_left_bar.setMax(boom_timer);
 
             /* Display first question */
             displayRandomQuestion();
@@ -109,7 +122,7 @@ public class TTB extends AppCompatActivity {
             actualQuestion = savedInstanceState.getParcelable("question");
             actualPlayer = savedInstanceState.getInt("actualPlayer");
             sip_count = savedInstanceState.getInt("sip");
-            timer = savedInstanceState.getInt("timer");
+            boom_timer = savedInstanceState.getInt("boom_timer");
             division_tv.setText(actualQuestion.getQuestion());
             level_tv.setText(actualQuestion.getLevel());
             question_tv.setText(actualQuestion.getQuestion());
@@ -119,28 +132,28 @@ public class TTB extends AppCompatActivity {
         answerA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCorrectAnswer(isGoodAnswer(answerA.getText().toString()));
+                displayCorrectAnswer(isGoodAnswer(answerA.getText().toString()));
             }
         });
 
         answerB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCorrectAnswer(isGoodAnswer(answerB.getText().toString()));
+                displayCorrectAnswer(isGoodAnswer(answerB.getText().toString()));
             }
         });
 
         answerC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCorrectAnswer(isGoodAnswer(answerC.getText().toString()));
+                displayCorrectAnswer(isGoodAnswer(answerC.getText().toString()));
             }
         });
 
         answerD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCorrectAnswer(isGoodAnswer(answerD.getText().toString()));
+                displayCorrectAnswer(isGoodAnswer(answerD.getText().toString()));
             }
         });
 
@@ -153,7 +166,7 @@ public class TTB extends AppCompatActivity {
         savedInstanceState.putParcelable("question", actualQuestion);
         savedInstanceState.putInt("actualPlayer", actualPlayer);
         savedInstanceState.putInt("sip", sip_count);
-        savedInstanceState.putInt("timer", timer);
+        savedInstanceState.putInt("boom_timer", boom_timer);
     }
 
     /* When activity is finished */
@@ -161,6 +174,8 @@ public class TTB extends AppCompatActivity {
 
         if(boom!=null)
             boom.cancel();
+        if(question_timer!=null)
+            question_timer.cancel();
         super.onStop();
     }
 
@@ -170,8 +185,10 @@ public class TTB extends AppCompatActivity {
      */
     private void displayRandomQuestion(){
 
-        createTimer();
+        createBoomTimer();
         boom.start();
+        createQuestionTimer();
+        question_timer.start();
 
         if ((actualQuestion = db.getRandomQuestion()) != null) { // If return question success
 
@@ -242,8 +259,6 @@ public class TTB extends AppCompatActivity {
     /* Open an alert dialog when user touch the back button */
     protected void exitByBackKey() {
 
-        boom.cancel();
-        
         new AlertDialog.Builder(this, R.style.TTBAlertDialog)
                 .setTitle(R.string.exit)
                 .setMessage(getResources().getString(R.string.alert_exit_game))
@@ -254,23 +269,22 @@ public class TTB extends AppCompatActivity {
                 })
                 .setNegativeButton(getResources().getString(R.string.no), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
-                        createTimer();
-                        boom.start();
+
                     }
                 }).setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                createTimer();
-                boom.start();
+
             }
         })
                 .show();
     }
 
     /* Display correct answer and results */
-    private void showCorrectAnswer(final boolean win){
+    private void displayCorrectAnswer(final boolean win){
 
         boom.cancel();
+        question_timer.cancel();
 
         int sip_count ;
         String message, title ;
@@ -328,8 +342,43 @@ public class TTB extends AppCompatActivity {
                 .show();
     }
 
+    /* Display alert dialog which show right answer when question time is left */
+    private void elapsedTimeDialog(){
+
+        wrong_answer = MediaPlayer.create(getApplicationContext(), R.raw.wrong_answer);
+        wrong_answer.start();
+        question_timer.cancel();
+
+        int sip_count ;
+
+        if(Objects.equals(actualQuestion.getLevel(), "Débutant")) //
+            sip_count = 3 ;
+        else if(Objects.equals(actualQuestion.getLevel(), "Confirmé"))
+            sip_count = 2 ;
+        else
+            sip_count = 1 ;
+
+        new AlertDialog.Builder(this, R.style.TTBAlertDialog)
+                .setTitle(R.string.elasped_time)
+                .setMessage(String.format(getResources().getString(R.string.ttb_lose), actualQuestion.getAnswerA(), sip_count, players.get(actualPlayer).getName()))
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        displayRandomQuestion();
+                    }
+                }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                displayRandomQuestion();
+            }
+        }).show();
+    }
+
     /* Show alert dialog at then end of countdown */
     private void boomDialog(){
+
+        question_timer.cancel();
+        boom.cancel();
 
         new AlertDialog.Builder(this, R.style.TTBAlertDialog)
                 .setTitle(R.string.ttb_boom_title)
@@ -338,49 +387,81 @@ public class TTB extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         sip_count = 0 ;
-                        time_left.setMax(timer);
-                        time_left.setProgress(0);
+                        boom_time_left_bar.setMax(boom_timer);
+                        boom_time_left_bar.setProgress(0);
                         displayRandomQuestion();
                     }
                 }).setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
                 sip_count = 0 ;
-                time_left.setMax(timer);
-                time_left.setProgress(0);
+                boom_time_left_bar.setMax(boom_timer);
+                boom_time_left_bar.setProgress(0);
                 displayRandomQuestion();
             }
         })
                 .show();
     }
 
-    private void createTimer(){
+    /* Set timer for bomb */
+    private void createBoomTimer(){
 
-        boom = new CountDownTimer(timer*1000, 500) {
+        boom = new CountDownTimer(boom_timer *1000, 500) {
             @Override
             public void onTick(long millisUntilFinished) {
-                if(tick){
-                    tick = false ;
+                if(boom_tick){
+                    boom_tick = false ;
                 }
 
                 else{
-                    tick = true ;
-                    timer-- ;
-                    time_left.setProgress(time_left.getMax()-timer-1);
-                    time_left_tv.setText(String.valueOf(timer+1));
+                    boom_tick = true ;
+                    boom_timer-- ;
+                    boom_time_left_bar.setProgress(boom_time_left_bar.getMax()- boom_timer -1);
+                    boom_time_left_tv.setText(String.valueOf(boom_timer +1));
                 }
             }
 
             @Override
             public void onFinish() {
-                tick = true ;
-                timer--;
-                time_left.setProgress(time_left.getMax()-timer-1);
-                time_left_tv.setText(String.valueOf(timer+1));
+                boom_tick = !boom_tick;
+                boom_timer--;
+                boom_time_left_bar.setProgress(boom_time_left_bar.getMax());
+                boom_time_left_tv.setText(String.valueOf(0));
                 MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.explosion);
                 mp.start();
-                timer = Operations.random_int(30, 60);
+                boom_timer = Operations.random_int(MIN_BOOM_TIMER, MAX_BOOM_TIMER);
                 boomDialog();
+            }
+        };
+    }
+
+    /* Set timer for questions */
+    private void createQuestionTimer(){
+        question_time_left = QUESTION_TIMER ;
+        question_time_left_bar.setMax(QUESTION_TIMER);
+
+        question_timer = new CountDownTimer(QUESTION_TIMER*1000, 500) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                if(question_tick){
+                    question_tick = false ;
+                }
+
+                else{
+                    question_tick = true ;
+                    question_time_left-- ;
+                    question_time_left_tv.setText(String.valueOf(question_time_left+1));
+                    question_time_left_bar.setProgress(question_time_left_bar.getMax()-question_time_left-1);
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                question_tick = !question_tick ;
+                question_time_left_tv.setText("0");
+                question_time_left_bar.setProgress(question_time_left_bar.getMax());
+                boom.cancel();
+                elapsedTimeDialog();
             }
         };
     }
