@@ -37,7 +37,7 @@
         <item name="android:textSize">@dimen/title_size</item>
         <item name="android:layout_margin">@dimen/primary_margin</item>
         <item name="android:textStyle">bold</item>
-
+        <item name="android:gravity">center</item>
         <item name="android:fontFamily">cursive</item>
     </style>
 
