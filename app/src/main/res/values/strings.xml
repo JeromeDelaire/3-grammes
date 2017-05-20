@@ -119,7 +119,7 @@
 
     <string name="level_player">Question %1$s pour %2$s : </string>
     <string name="ttb_win">%1$d gorgée(s) en plus au compteur !</string>
-    <string name="ttb_lose">Réponse : %1$s.\n%2$d gorgée(s) pour %3$s !</string>
+    <string name="ttb_lose">%1$d gorgée(s) pour %2$s !</string>
     <string name="ttb_boom">%1$s prends %2$d gorgée(s) !</string>
     <string name="ttb_boom_title">Boom !</string>
     <string name="wrong_answer">Mauvaise réponse !</string>

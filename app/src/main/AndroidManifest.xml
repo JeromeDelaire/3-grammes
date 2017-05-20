@@ -64,7 +64,7 @@
         <!-- Partie de Tic Tac Boom. -->
         <activity android:name=".Games.TTB.TTB"
             android:theme="@style/TTBTheme"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="portrait"/>
 
     </application>
 

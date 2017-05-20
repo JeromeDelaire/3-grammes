@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
@@ -29,9 +28,11 @@ public class GamesMenu extends AppCompatActivity implements View.OnClickListener
 
     private ImageButton picolo_rules, more_or_less_rules, red_or_black_rules ;
     private RelativeLayout picolo, more_or_less, red_or_black, comming_soon ;
-    private FrameLayout picolo_icon_container ;
+    private RelativeLayout oldAnimatedLayout = null ;
 
     int rotationAngle = 3, rotation_speed = 75, animation_count = 0 ;
+    Timer timer ;
+    TimerTask timerTask ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,29 +48,6 @@ public class GamesMenu extends AppCompatActivity implements View.OnClickListener
         red_or_black_rules = (ImageButton) findViewById(R.id.red_or_black_rules_button);
         comming_soon = (RelativeLayout) findViewById(R.id.comming_soon_button);
 
-        picolo_icon_container = (FrameLayout) findViewById(R.id.picolo_icon_container);
-
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ArrayList<RelativeLayout> relativeLayouts = new ArrayList<RelativeLayout>();
-                        relativeLayouts.add(picolo);
-                        relativeLayouts.add(more_or_less);
-                        relativeLayouts.add(red_or_black);
-                        relativeLayouts.add(comming_soon);
-                        Collections.shuffle(relativeLayouts);
-                        animateButton(relativeLayouts.get(0));
-                    }
-                });
-            }
-        };
-
-        Timer timer = new Timer();
-        timer.schedule(timerTask, 1000, 3000);
-
         //Ajout des listeners aux boutons
         picolo.setOnClickListener(this);
         picolo_rules.setOnClickListener(this);
@@ -79,9 +57,37 @@ public class GamesMenu extends AppCompatActivity implements View.OnClickListener
         red_or_black_rules.setOnClickListener(this);
     }
 
+    @Override
+    protected void onResume(){
+
+        timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ArrayList<RelativeLayout> relativeLayouts = new ArrayList<>();
+                        if(oldAnimatedLayout!=picolo) relativeLayouts.add(picolo);
+                        if(oldAnimatedLayout!=more_or_less) relativeLayouts.add(more_or_less);
+                        if(oldAnimatedLayout!=red_or_black) relativeLayouts.add(red_or_black);
+                        if(oldAnimatedLayout!=comming_soon) relativeLayouts.add(comming_soon);
+                        Collections.shuffle(relativeLayouts);
+                        oldAnimatedLayout=relativeLayouts.get(0);
+                        animateButton(relativeLayouts.get(0));
+                    }
+                });
+            }
+        };
+
+        timer = new Timer();
+        timer.schedule(timerTask, 1000, 3000);
+        super.onResume();
+    }
     // OnClickListeners
     @Override
     public void onClick(View view) {
+        timer.cancel();
+
         //Si on clique sur start picolo
         if(view==picolo){
             Intent myIntent = new Intent(this, PicoloSettings.class);

@@ -9,7 +9,7 @@
 
     <dimen name="little_button_size">30dp</dimen>
     <dimen name="button_size">50dp</dimen>
-    <dimen name="title_size">50dp</dimen>
+    <dimen name="title_size">40dp</dimen>
     <dimen name="question_text_size">30sp</dimen>
     <dimen name="tiles_text_size">16sp</dimen>
     <dimen name="normal_text_size">16sp</dimen>

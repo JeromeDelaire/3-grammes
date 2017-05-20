@@ -3,6 +3,7 @@ package com.example.jerome.a3grammes.Games.RedOrBlack;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -148,7 +149,8 @@ public class RedOrBlack extends AppCompatActivity{
 
         //Création du bouton noir
         final Button black = new Button(this);
-        black.setText(R.string.rob_black);
+        black.setBackgroundResource(R.drawable.circle);
+        black.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.black)));
         black.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

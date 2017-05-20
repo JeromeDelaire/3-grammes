@@ -1,11 +1,14 @@
 package com.example.jerome.a3grammes.Games.TTB;
 
 import android.content.DialogInterface;
+import android.graphics.drawable.GradientDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -37,6 +40,7 @@ public class TTB extends AppCompatActivity {
     private TextView question_tv, division_tv, level_tv, boom_time_left_tv, question_time_left_tv;
     private Button answerA, answerB, answerC, answerD ;
     private ProgressBar boom_time_left_bar, question_time_left_bar;
+    private TextView sip_counter_tv ;
 
     /* Game informations */
     private ArrayList<Player> players ;
@@ -90,9 +94,9 @@ public class TTB extends AppCompatActivity {
         answerA = (Button) findViewById(R.id.answerA);
         answerB = (Button) findViewById(R.id.answerB);
         answerC = (Button) findViewById(R.id.answerC);
-        answerD = (Button) findViewById(R.id.answerD);
+        answerD = (Button) findViewById(R.id.answerD) ;
 
-        /* Sounds */
+        sip_counter_tv = (TextView) findViewById(R.id.sip_counter);
 
         db = TTBDatabaseAccess.getInstance(this); // Create database
         db.open(); // Open db in writable mode
@@ -132,28 +136,76 @@ public class TTB extends AppCompatActivity {
         answerA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayCorrectAnswer(isGoodAnswer(answerA.getText().toString()));
+                GradientDrawable shape = (GradientDrawable) getResources().getDrawable(R.drawable.button);
+                int argb ;
+                boolean goodAnswer = isGoodAnswer(answerA.getText().toString());
+                if(goodAnswer)
+                    argb = getResources().getColor(android.R.color.holo_green_dark);
+                else{
+                    argb = getResources().getColor(android.R.color.holo_red_dark);
+                    colorGoodAnswerButton();
+                }
+
+                shape.setColor(argb);
+                answerA.setBackground(shape);
+                displayCorrectAnswer(goodAnswer);
             }
         });
 
         answerB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayCorrectAnswer(isGoodAnswer(answerB.getText().toString()));
+                GradientDrawable shape = (GradientDrawable) getResources().getDrawable(R.drawable.button);
+                int argb ;
+                boolean goodAnswer = isGoodAnswer(answerB.getText().toString());
+                if(goodAnswer)
+                    argb = getResources().getColor(android.R.color.holo_green_dark);
+                else{
+                    argb = getResources().getColor(android.R.color.holo_red_dark);
+                    colorGoodAnswerButton();
+                }
+
+                shape.setColor(argb);
+                answerB.setBackground(shape);
+                displayCorrectAnswer(goodAnswer);
             }
         });
 
         answerC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayCorrectAnswer(isGoodAnswer(answerC.getText().toString()));
+                GradientDrawable shape = (GradientDrawable) ContextCompat.getDrawable(getApplicationContext(), R.drawable.button);
+                int argb ;
+                boolean goodAnswer = isGoodAnswer(answerC.getText().toString());
+                if(goodAnswer)
+                    argb = getResources().getColor(android.R.color.holo_green_dark);
+                else{
+                    argb = getResources().getColor(android.R.color.holo_red_dark);
+                    colorGoodAnswerButton();
+                }
+
+                shape.setColor(argb);
+                answerC.setBackground(shape);
+                displayCorrectAnswer(goodAnswer);
             }
         });
 
         answerD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displayCorrectAnswer(isGoodAnswer(answerD.getText().toString()));
+                GradientDrawable shape = (GradientDrawable) getResources().getDrawable(R.drawable.button);
+                int argb ;
+                boolean goodAnswer = isGoodAnswer(answerD.getText().toString());
+                if(goodAnswer)
+                    argb = getResources().getColor(android.R.color.holo_green_dark);
+                else{
+                    colorGoodAnswerButton();
+                    argb = getResources().getColor(android.R.color.holo_red_dark);
+                }
+
+                shape.setColor(argb);
+                answerD.setBackground(shape);
+                displayCorrectAnswer(goodAnswer);
             }
         });
 
@@ -185,8 +237,18 @@ public class TTB extends AppCompatActivity {
      */
     private void displayRandomQuestion(){
 
+        GradientDrawable shape = (GradientDrawable) getResources().getDrawable(R.drawable.button);
+        int argb = getResources().getColor(R.color.light_blue);
+        shape.setColor(argb);
+        answerA.setBackground(shape);
+        answerB.setBackground(shape);
+        answerC.setBackground(shape);
+        answerD.setBackground(shape);
+
+        if(boom!=null) boom.cancel();
         createBoomTimer();
         boom.start();
+        if(question_timer!=null) question_timer.cancel();
         createQuestionTimer();
         question_timer.start();
 
@@ -226,11 +288,13 @@ public class TTB extends AppCompatActivity {
     private boolean isGoodAnswer(String answer){
         boolean correct ;
         if((correct = Objects.equals(actualQuestion.getAnswerA(), answer))){
+            if(good_answer!=null) good_answer.release();
             good_answer = MediaPlayer.create(getApplicationContext(), R.raw.right_answer);
             good_answer.start();
         }
 
         else{
+            if(wrong_answer!=null) wrong_answer.release();
             wrong_answer = MediaPlayer.create(getApplicationContext(), R.raw.wrong_answer);
             wrong_answer.start();
         }
@@ -301,6 +365,7 @@ public class TTB extends AppCompatActivity {
                 sip_count = 3 ;
 
             this.sip_count+=sip_count; // Add sip to counter
+            sip_counter_tv.setText(String.valueOf(this.sip_count));
 
             message = String.format(getResources().getString(R.string.ttb_win), sip_count);
         }
@@ -317,11 +382,11 @@ public class TTB extends AppCompatActivity {
             else
                 sip_count = 1 ;
 
-            message = String.format(getResources().getString(R.string.ttb_lose), actualQuestion.getAnswerA(), sip_count, players.get(actualPlayer).getName());
+            message = String.format(getResources().getString(R.string.ttb_lose), sip_count, players.get(actualPlayer).getName());
         }
 
 
-        new AlertDialog.Builder(this, R.style.TTBAlertDialog)
+        AlertDialog alertDialog = new AlertDialog.Builder(this, R.style.TTBAlertDialog)
                 .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
@@ -332,14 +397,21 @@ public class TTB extends AppCompatActivity {
                         displayRandomQuestion();
                     }
                 }).setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                if(win)
-                    nextPlayer();
-                displayRandomQuestion();
-            }
-        })
-                .show();
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        if(win)
+                            nextPlayer();
+                        displayRandomQuestion();
+                    }
+                }).create();
+
+        WindowManager.LayoutParams wmlp = alertDialog.getWindow().getAttributes();
+
+        wmlp.gravity = Gravity.BOTTOM ;
+        wmlp.verticalMargin = 0.1f;
+
+        alertDialog.show();
+
     }
 
     /* Display alert dialog which show right answer when question time is left */
@@ -358,9 +430,9 @@ public class TTB extends AppCompatActivity {
         else
             sip_count = 1 ;
 
-        new AlertDialog.Builder(this, R.style.TTBAlertDialog)
+        AlertDialog alertDialog = new AlertDialog.Builder(this, R.style.TTBAlertDialog)
                 .setTitle(R.string.elasped_time)
-                .setMessage(String.format(getResources().getString(R.string.ttb_lose), actualQuestion.getAnswerA(), sip_count, players.get(actualPlayer).getName()))
+                .setMessage(String.format(getResources().getString(R.string.ttb_lose), sip_count, players.get(actualPlayer).getName()))
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -371,7 +443,14 @@ public class TTB extends AppCompatActivity {
             public void onCancel(DialogInterface dialog) {
                 displayRandomQuestion();
             }
-        }).show();
+        }).create();
+
+        WindowManager.LayoutParams wmlp = alertDialog.getWindow().getAttributes();
+
+        wmlp.gravity = Gravity.BOTTOM ;
+        wmlp.verticalMargin = 0.1f;
+
+        alertDialog.show();
     }
 
     /* Show alert dialog at then end of countdown */
@@ -380,13 +459,14 @@ public class TTB extends AppCompatActivity {
         question_timer.cancel();
         boom.cancel();
 
-        new AlertDialog.Builder(this, R.style.TTBAlertDialog)
+        AlertDialog alertDialog = new AlertDialog.Builder(this, R.style.TTBAlertDialog)
                 .setTitle(R.string.ttb_boom_title)
                 .setMessage(String.format(getResources().getString(R.string.ttb_boom), players.get(actualPlayer).getName(), sip_count))
                 .setPositiveButton(getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         sip_count = 0 ;
+                        sip_counter_tv.setText("0");
                         boom_time_left_bar.setMax(boom_timer);
                         boom_time_left_bar.setProgress(0);
                         displayRandomQuestion();
@@ -399,13 +479,20 @@ public class TTB extends AppCompatActivity {
                 boom_time_left_bar.setProgress(0);
                 displayRandomQuestion();
             }
-        })
-                .show();
+        }).create();
+
+        WindowManager.LayoutParams wmlp = alertDialog.getWindow().getAttributes();
+
+        wmlp.gravity = Gravity.BOTTOM ;
+        wmlp.verticalMargin = 0.1f;
+
+        alertDialog.show();
     }
 
     /* Set timer for bomb */
     private void createBoomTimer(){
 
+        boom_tick = false ;
         boom = new CountDownTimer(boom_timer *1000, 500) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -423,6 +510,7 @@ public class TTB extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                colorGoodAnswerButton();
                 boom_tick = !boom_tick;
                 boom_timer--;
                 boom_time_left_bar.setProgress(boom_time_left_bar.getMax());
@@ -436,9 +524,11 @@ public class TTB extends AppCompatActivity {
     }
 
     /* Set timer for questions */
-    private void createQuestionTimer(){
+    private void createQuestionTimer()
+    {
         question_time_left = QUESTION_TIMER ;
         question_time_left_bar.setMax(QUESTION_TIMER);
+        question_tick = false ;
 
         question_timer = new CountDownTimer(QUESTION_TIMER*1000, 500) {
             @Override
@@ -457,6 +547,7 @@ public class TTB extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                colorGoodAnswerButton();
                 question_tick = !question_tick ;
                 question_time_left_tv.setText("0");
                 question_time_left_bar.setProgress(question_time_left_bar.getMax());
@@ -464,6 +555,39 @@ public class TTB extends AppCompatActivity {
                 elapsedTimeDialog();
             }
         };
+    }
+
+    /* set background of correct anwer button to green */
+    private void colorGoodAnswerButton(){
+
+        GradientDrawable shape = (GradientDrawable) getResources().getDrawable(R.drawable.button);
+        int argb ;
+
+        if(Objects.equals(answerA.getText().toString(), actualQuestion.getAnswerA())){
+            argb = getResources().getColor(android.R.color.holo_green_dark);
+            shape.setColor(argb);
+            answerA.setBackground(shape);
+        }
+
+        else if(Objects.equals(answerB.getText().toString(), actualQuestion.getAnswerA())){
+            argb = getResources().getColor(android.R.color.holo_green_dark);
+            shape.setColor(argb);
+            answerB.setBackground(shape);
+        }
+
+        else if(Objects.equals(answerC.getText().toString(), actualQuestion.getAnswerA())){
+            argb = getResources().getColor(android.R.color.holo_green_dark);
+            shape.setColor(argb);
+            answerC.setBackground(shape);
+        }
+
+        else if(Objects.equals(answerD.getText().toString(), actualQuestion.getAnswerA())){
+            argb = getResources().getColor(android.R.color.holo_green_dark);
+            shape.setColor(argb);
+            answerD.setBackground(shape);
+        }
+
+
     }
 
 }

@@ -7,7 +7,7 @@
     android:background="@color/menu_background">
 
 
-    <TextView
+    <com.example.jerome.a3grammes.Global.TextViewPlus
         android:id="@+id/maintTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         android:textSize="40sp"
         android:textAllCaps="true"
         android:textStyle="bold"
-        android:fontFamily="serif-monospace"
+        foo:customFont="Sketch_Block.ttf"
         android:layout_marginBottom="30dp"
         android:layout_marginTop="30dp"
         android:textColor="@color/black"/>
